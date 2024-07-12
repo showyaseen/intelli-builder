@@ -1,0 +1,44 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ */
+
+.components-datetime__time-wrapper {
+	align-items: flex-start !important;
+}
+
+.intelli-builder-schedule-label {
+    display: flex;
+    gap: 5px;
+	margin: 5px 0px 5px 0px;
+    padding: 5px;
+
+	svg {
+		margin-top: -2px;
+	}
+}
+
+.intelli-builder-schedule-divider {
+	border-top: 1px solid #e0e0e0;
+	height: 1px;
+	margin: 5px 0px 20px 0px;
+	width: 100%;
+}
+
+.intelli-builder-button-reset {
+	display: flex;
+    justify-content: flex-end;
+    margin: -15px 0px 10px 0px;
+    padding: 0px 25px;
+}
+
+.intelli-builder-notification {
+	margin: 10px 0px;
+	.components-notice__content {
+		flex-grow: 1;
+		margin: 4px 4px 4px 0;
+	}
+}
+
+
+

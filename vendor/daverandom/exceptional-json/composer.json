@@ -1,0 +1,14 @@
+{
+  "name": "daverandom/exceptional-json",
+  "description": "JSON encoding and decoding that throws exceptions on failure",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [{"name": "Chris Wright"}],
+  "autoload": {
+    "psr-4": {"ExceptionalJSON\\": "src/"},
+    "files": ["src/functions.php"]
+  },
+  "require": {
+    "php": ">=7.0"
+  }
+}

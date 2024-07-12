@@ -1,0 +1,44 @@
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/@wordpress/scripts/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/@wordpress/scripts/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/visibilty-settings/editor.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ *
+ */
+.components-datetime__time-wrapper {
+  align-items: flex-start !important;
+}
+
+.intelli-builder-schedule-label {
+  display: flex;
+  gap: 5px;
+  margin: 5px 0px 5px 0px;
+  padding: 5px;
+}
+.intelli-builder-schedule-label svg {
+  margin-top: -2px;
+}
+
+.intelli-builder-schedule-divider {
+  border-top: 1px solid #e0e0e0;
+  height: 1px;
+  margin: 5px 0px 20px 0px;
+  width: 100%;
+}
+
+.intelli-builder-button-reset {
+  display: flex;
+  justify-content: flex-end;
+  margin: -15px 0px 10px 0px;
+  padding: 0px 25px;
+}
+
+.intelli-builder-notification {
+  margin: 10px 0px;
+}
+.intelli-builder-notification .components-notice__content {
+  flex-grow: 1;
+  margin: 4px 4px 4px 0;
+}
+
+/*# sourceMappingURL=index.css.map*/
