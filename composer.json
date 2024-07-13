@@ -1,6 +1,6 @@
 {
     "name": "ytaha/intellibuilder",
-    "description": "IntelliBuilder is an advanced WordPress plugin that integrates AI tools to enhance your site-building experience.",
+    "description": "IntelliBuilder is a WordPress plugin that control who sees your content based on user rules, web-based rules, and scheduled time.",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-or-later",
     "authors": [

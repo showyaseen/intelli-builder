@@ -1,6 +1,21 @@
+/**
+ * LoggedInUser Component for selecting user roles.
+ *
+ * @package YTAHA\IntelliBuilder
+ */
+
 import { useState } from '@wordpress/element';
 import { PanelRow, SelectControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
+/**
+ * LoggedInUser component.
+ *
+ * @param {Object} props Component properties.
+ * @param {Object} props.attributes Block attributes.
+ * @param {Function} props.setAttributes Function to set block attributes.
+ * @return {JSX.Element} LoggedInUser component.
+ */
 const LoggedInUser = ({ attributes, setAttributes }) => {
 	const [userStatus, setUserStatus] = useState(attributes?.intelliBuidlerSettings?.userStatus || '');
 
@@ -12,13 +27,13 @@ const LoggedInUser = ({ attributes, setAttributes }) => {
 	return (
 		<PanelRow>
 			<SelectControl
-				label="User Status"
+				label={ __( 'User Status', 'intelli-builder' ) }
 				value={userStatus}
 				options={[
-					{ label: 'Please select user status', value: '' },
-					{ label: 'Logged In', value: 'loggedin' },
-					{ label: 'Logged Out', value: 'loggedout' },
-					{ label: 'Specific Users', value: 'specific' },
+					{ label: __( 'Please select user status', 'intelli-builder' ), value: '' },
+					{ label: __( 'Logged In', 'intelli-builder' ), value: 'loggedin' },
+					{ label: __( 'Logged Out', 'intelli-builder' ), value: 'loggedout' },
+					{ label: __( 'Specific Users', 'intelli-builder' ), value: 'specific' },
 				]}
 				onChange={handleUserStatusChange}
 			/>

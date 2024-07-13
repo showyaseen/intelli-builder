@@ -1,9 +1,10 @@
-// Native Depedencies.
+/**
+ * Package: YTAHA\IntelliBuilder
+ *
+ */
+
 const path = require('path');
-
-// Third-Party Dependencies.
 const CopyPlugin = require('@wordpress/scripts/node_modules/copy-webpack-plugin');
-
 const default_config_path = require.resolve('@wordpress/scripts/config/webpack.config.js');
 
 /**
@@ -69,22 +70,5 @@ const buildBlockConfig = (block_name) => buildConfig(
 	)
 );
 module.exports = [
-	buildBlockConfig('intelli-builder'),
-	buildBlockConfig('visibilty-settings'),
-	// Setup a configuration to build `./src/admin-settings/` to `./build/admin-settings/`
-	buildConfig(
-		config => (
-			{
-				...config,
-				entry: {
-					index: path.resolve(process.cwd(), 'src', 'admin-settings', 'index.jsx'),
-				},
-				output: {
-					...config.output,
-					path: path.resolve(config.output.path, 'admin-settings'),
-				},
-				plugins: config.plugins.map((plugin) => replaceCopyPlugin(plugin, null))
-			}
-		)
-	)
+	buildBlockConfig('visibilty-settings')
 ];

@@ -1,3 +1,8 @@
+/**
+ * Package: YTAHA\IntelliBuilder
+ *
+ */
+
 import { Icon } from '@wordpress/components';
 
 const Label = ({ icon, text }) => {

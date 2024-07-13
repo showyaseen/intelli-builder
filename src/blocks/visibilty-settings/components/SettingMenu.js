@@ -1,62 +1,44 @@
-import { Button, MenuItem, MenuGroup, Dropdown, DropdownMenu } from '@wordpress/components';
-import { Fragment } from '@wordpress/element';
-import { more, moreVertical, trash } from '@wordpress/icons';
-import metadata from '../block.json'
-const SettingMenu = ({ attributes, setAttributes, setIsModalOpen }) => {
+/**
+ * Package: YTAHA\IntelliBuilder
+ *
+ */
 
-	const copyConditionsToClipboard = () => {
-		const conditions = {
-			enableConditionalContent: attributes?.intelliBuidlerSettings.enableConditionalContent,
-			userRoles: attributes?.intelliBuidlerSettings.userRoles,
-			scheduleType: attributes?.intelliBuidlerSettings.scheduleType,
-			startDate: attributes?.intelliBuidlerSettings.startDate,
-			endDate: attributes?.intelliBuidlerSettings.endDate,
-			userStatus: attributes?.intelliBuidlerSettings.userStatus,
-			specificUsers: attributes?.intelliBuidlerSettings.specificUsers,
-		};
-		clipboard.write(JSON.stringify(conditions));
-	};
+// Import necessary components and icons from @wordpress/components and @wordpress/icons
+import { DropdownMenu } from '@wordpress/components';
+import { moreVertical, trash } from '@wordpress/icons';
+import { __ } from '@wordpress/i18n';
+import metadata from '../block.json'; // Import block metadata
+
+// Define the SettingMenu component
+const SettingMenu = ({ setAttributes, setIsModalOpen }) => {
+
+	/**
+	 * Resets the conditional settings to their default values.
+	 */
 	const resetConditions = () => {
-		console.log('metadata?.attributes?.default?.intelliBuidlerSettings?.default', metadata);
 		setAttributes({
 			intelliBuidlerSettings: metadata?.attributes?.intelliBuidlerSettings?.default
 		});
 	};
+
 	return (
 		<>
+			{/* DropdownMenu component for the settings menu */}
 			<DropdownMenu
 				controls={[
 					{
 						icon: trash,
 						onClick: resetConditions,
-						title: 'Reset all rules'
+						title: __( 'Reset all rules', 'intelli-builder' )
 					},
 				]}
 				icon={moreVertical}
 				onToggle={function noRefCheck() { }}
-				label="Settings"
-			>
-				<MenuGroup>
-					<MenuItem icon={more} onClick={copyConditionsToClipboard}>
-						Move Up
-					</MenuItem>
-					<MenuItem icon={more} onClick={copyConditionsToClipboard}>
-						Move Down
-					</MenuItem>
-				</MenuGroup>
-				<MenuGroup>
-					<MenuItem icon={more} onClick={copyConditionsToClipboard}>
-						Remove
-					</MenuItem>
-				</MenuGroup>
-				<MenuGroup>
-					<MenuItem onClick={copyConditionsToClipboard}>Copy Conditions to Clipboard</MenuItem>
-					<MenuItem onClick={() => setIsModalOpen(true)}>Paste Conditions from Clipboard</MenuItem>
-				</MenuGroup>
-			</DropdownMenu>
+				label={ __( 'Settings', 'intelli-builder' ) }
+			/>
 		</>
 	);
 }
 
-
+// Export the SettingMenu component as the default export
 export default SettingMenu;

@@ -1,4 +1,8 @@
-import PasteModal from './PasteModal';
+/**
+ * Package: YTAHA\IntelliBuilder
+ *
+ */
+
 import SettingMenu from './SettingMenu';
 import SelectedConditions from './SelectedConditions';
 import Action from './Action';
@@ -13,7 +17,6 @@ export {
 	SoftwareDevice,
 	User,
 	WebBased,
-	PasteModal,
 	SettingMenu,
 	SelectedConditions,
 	Action,

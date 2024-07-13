@@ -1,7 +1,7 @@
 {
 	"name": "intelli-builder",
 	"version": "0.0.1",
-	"description": "IntelliBuilder is an advanced WordPress plugin that integrates AI tools to enhance your site-building experience.",
+	"description": "IntelliBuilder is a WordPress plugin that control who sees your content based on user rules, web-based rules, and scheduled time.",
 	"author": "Yaseen Taha",
 	"license": "GPL-2.0-or-later",
 	"main": "assets/js/intellibuilder.js",
@@ -17,11 +17,10 @@
 	"keywords": [
 		"wordpress",
 		"plugin",
-		"AI",
 		"Gutenberg",
-		"Elementor",
-		"BeaverBuilder",
-		"Divi"
+		"Blocks",
+		"Visibility Control",
+		"Conditional Content"
 	],
 	"devDependencies": {
 		"@babel/core": "^7.24.7",

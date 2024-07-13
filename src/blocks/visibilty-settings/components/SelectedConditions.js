@@ -1,5 +1,10 @@
+/**
+ * Package: YTAHA\IntelliBuilder
+ *
+ */
+
 import { useState, useEffect } from '@wordpress/element';
-import { Button, Notice } from '@wordpress/components';
+import { Notice } from '@wordpress/components';
 import { generateConditionDescription } from '../utils/generateConditionDescription';
 
 const SelectedConditions = ({ attributes, setAttributes }) => {

@@ -1,5 +1,9 @@
-import { Path, SVG } from '@wordpress/primitives';
+/**
+ * Package: YTAHA\IntelliBuilder
+ *
+ */
 
+import { Path, SVG } from '@wordpress/primitives';
 
 const pluginIcon =
 	(

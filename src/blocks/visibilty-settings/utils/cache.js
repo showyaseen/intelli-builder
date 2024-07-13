@@ -1,4 +1,9 @@
 /**
+ * Package: YTAHA\IntelliBuilder
+ *
+ */
+
+/**
  * Cache name for the plugin.
  *
  * @type {string}

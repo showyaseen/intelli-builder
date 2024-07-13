@@ -1,6 +1,13 @@
+/**
+ * GeoLocation Component for selecting user roles.
+ *
+ * @package YTAHA\IntelliBuilder
+ */
+
 import { useState, useEffect } from '@wordpress/element';
-import { PanelRow, FormTokenField } from '@wordpress/components';
+import { FormTokenField } from '@wordpress/components';
 import cache from '../../../utils/cache';
+import { __ } from '@wordpress/i18n';
 
 const COUNTRIES_CACHE_KEY = 'geolocation_countries_cities';
 
@@ -23,6 +30,14 @@ const fetchCountriesCitiesAPI = async () => {
 	return [];
 };
 
+/**
+ * GeoLocation component.
+ *
+ * @param {Object} props Component properties.
+ * @param {Object} props.attributes Block attributes.
+ * @param {Function} props.setAttributes Function to set block attributes.
+ * @return {JSX.Element} GeoLocation component.
+ */
 const GeoLocation = ({ attributes, setAttributes }) => {
 	const [country, setCountry] = useState([]);
 	const [city, setCity] = useState(attributes.intelliBuidlerSettings.geoLocation_city || []);
@@ -66,7 +81,7 @@ const GeoLocation = ({ attributes, setAttributes }) => {
 	return (
 		<>
 			<FormTokenField
-				label="Countries"
+				label={ __('Countries', 'intelli-builder') }
 				value={country.map(c => c.value)}
 				suggestions={countriesOptions.map(country => country.label)}
 				onChange={(values) => {
@@ -78,7 +93,7 @@ const GeoLocation = ({ attributes, setAttributes }) => {
 			/>
 
 			<FormTokenField
-				label="Cities"
+				label={ __('Cities', 'intelli-builder') }
 				value={city}
 				suggestions={citiesOptions}
 				onChange={(selectedCities) => {
