@@ -42,7 +42,7 @@ class ConditionalBlockRender {
      *
      * @param string $block_content The block content.
      * @param array $block The block data.
-     * @return string The modified block content based on conditional rules.
+     * @return string The empty string or block content based on conditional rules.
      */
     public function apply_conditional_block_render(string $block_content, array $block): string {
         $rules = $block['attrs']['intelliBuidlerSettings'] ?? [];

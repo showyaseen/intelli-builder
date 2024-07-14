@@ -105,10 +105,10 @@ final class IntelliBuilder
 		// Register Admin Menu.
 		\YTAHA\IntelliBuilder\Admin\AdminMenu::get_instance();
 
-		// Register IntelliBuilder Block Assets Loader.
+		// Register Block Assets Loader.
 		\YTAHA\IntelliBuilder\Blocks\BlockLoader::get_instance();
 
-		// Register IntelliBuilder Block Conditional Block Render.
+		// Register Conditional Block Render.
 		\YTAHA\IntelliBuilder\Blocks\ConditionalBlockRender::get_instance();
 	}
 }
