@@ -70,8 +70,9 @@ export const generateConditionDescription = (settings) => {
     if (browser_name.length) {
         conditions.push(`using <b>${browser_name.join(', ')}</b> browsers`);
     }
+
     if (browser_language.length) {
-        const languages = browser_language.join(', ');
+        const languages = browser_language.map(lang => Object.values(lang)[0]).join(', ');
         conditions.push(`with browser languages <b>${languages}</b>`);
     }
 
@@ -121,7 +122,7 @@ export const generateConditionDescription = (settings) => {
     return [
         conditions.length,
         conditions.length > 0
-            ? `The block will be <b>${visibilityAction}</b> for ${conditions.join(', ')}. It will be <b>${oppositeAction}</b> for others.`
+            ? `The block will be <b>${visibilityAction}</b> for ${conditions.join(', ')}. It will be <b>${oppositeAction}</b> otherwise.`
             : 'No visibility rules applied.'
     ];
 };

@@ -47,8 +47,8 @@ const browserLanguages = [
  */
 const Browser = ({ attributes, setAttributes }) => {
 	const [browserNamesSelected, setBrowserNamesSelected] = useState(attributes?.intelliBuidlerSettings?.browser_name || []);
-	const [browserLanguagesSelected, setBrowserLanguagesSelected] = useState(attributes?.intelliBuidlerSettings?.browser_language || []);
-
+	const [browserLanguagesSelected, setBrowserLanguagesSelected] = useState(attributes?.intelliBuidlerSettings?.browser_language.map(lang => Object.values(lang)[0]) || []);
+	console.log('attributes?.intelliBuidlerSettings?.browser_language', attributes?.intelliBuidlerSettings?.browser_language);
 	/**
 	 * Handles change in selected browser names.
 	 *
@@ -69,13 +69,18 @@ const Browser = ({ attributes, setAttributes }) => {
 	 *
 	 * @param {Array} value Selected browser languages.
 	 */
-	const handleBrowserLanguagesChange = (value) => {
-		setBrowserLanguagesSelected(value);
+	const handleBrowserLanguagesChange = (languages) => {
+		const selectedLanguages = languages
+			.map(lang => browserLanguages.find(browserLanguage => Object.values(browserLanguage)[0] === lang))
+			.filter(Boolean);
+
+		setBrowserLanguagesSelected(languages);
+
 		setAttributes({
 			intelliBuidlerSettings: {
 				...attributes.intelliBuidlerSettings,
-				browser_language: value
-			}
+				browser_language: selectedLanguages,
+			},
 		});
 	};
 

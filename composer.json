@@ -14,9 +14,7 @@
         "php": ">=7.4",
         "composer/installers": "~1.0",
         "guzzlehttp/guzzle": "^7.0",
-        "browscap/browscap-php": "^4.0",
-        "geoip2/geoip2": "^2.0",
-        "hisorange/browser-detect": "^4.5"
+		"hisorange/browser-detect": "^4.5"
     },
     "autoload": {
         "psr-4": {

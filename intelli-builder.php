@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: IntelliBuilder
+ * Plugin Name: IntelliBuilder (new)
  * Plugin URI: https://wordpress.com/plugins/intelli-builder
  * Description: IntelliBuilder is a WordPress plugin that control who sees your content based on user rules, web-based rules, and scheduled time.
  * Version: 0.0.1

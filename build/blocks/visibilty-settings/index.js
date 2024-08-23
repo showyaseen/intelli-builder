@@ -795,8 +795,8 @@ const Browser = ({
   setAttributes
 }) => {
   const [browserNamesSelected, setBrowserNamesSelected] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(attributes?.intelliBuidlerSettings?.browser_name || []);
-  const [browserLanguagesSelected, setBrowserLanguagesSelected] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(attributes?.intelliBuidlerSettings?.browser_language || []);
-
+  const [browserLanguagesSelected, setBrowserLanguagesSelected] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(attributes?.intelliBuidlerSettings?.browser_language.map(lang => Object.values(lang)[0]) || []);
+  console.log('attributes?.intelliBuidlerSettings?.browser_language', attributes?.intelliBuidlerSettings?.browser_language);
   /**
    * Handles change in selected browser names.
    *
@@ -817,12 +817,13 @@ const Browser = ({
    *
    * @param {Array} value Selected browser languages.
    */
-  const handleBrowserLanguagesChange = value => {
-    setBrowserLanguagesSelected(value);
+  const handleBrowserLanguagesChange = languages => {
+    const selectedLanguages = languages.map(lang => browserLanguages.find(browserLanguage => Object.values(browserLanguage)[0] === lang)).filter(Boolean);
+    setBrowserLanguagesSelected(languages);
     setAttributes({
       intelliBuidlerSettings: {
         ...attributes.intelliBuidlerSettings,
-        browser_language: value
+        browser_language: selectedLanguages
       }
     });
   };
@@ -1990,7 +1991,7 @@ const generateConditionDescription = settings => {
     conditions.push(`using <b>${browser_name.join(', ')}</b> browsers`);
   }
   if (browser_language.length) {
-    const languages = browser_language.join(', ');
+    const languages = browser_language.map(lang => Object.values(lang)[0]).join(', ');
     conditions.push(`with browser languages <b>${languages}</b>`);
   }
 
@@ -2036,7 +2037,7 @@ const generateConditionDescription = settings => {
       conditions.push(`ending at <b>${endTime}</b>`);
     }
   }
-  return [conditions.length, conditions.length > 0 ? `The block will be <b>${visibilityAction}</b> for ${conditions.join(', ')}. It will be <b>${oppositeAction}</b> for others.` : 'No visibility rules applied.'];
+  return [conditions.length, conditions.length > 0 ? `The block will be <b>${visibilityAction}</b> for ${conditions.join(', ')}. It will be <b>${oppositeAction}</b> otherwise.` : 'No visibility rules applied.'];
 };
 
 /***/ }),

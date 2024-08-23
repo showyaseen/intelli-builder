@@ -1,6 +1,0 @@
-vendor/
-composer.lock
-phpunit.xml
-infection.json
-infection-log.txt
-.phpunit.result.cache

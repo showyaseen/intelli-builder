@@ -51,7 +51,8 @@ class BrowserLanguage implements Rule {
     public function is_met(): bool {
         $user_language = strtolower($_SERVER['HTTP_ACCEPT_LANGUAGE']);
         foreach ($this->languages as $language) {
-            if (strpos($user_language, strtolower($language)) !== false) {
+			$lang_code = array_key_first($language);
+            if (strpos($user_language, strtolower($lang_code)) !== false) {
                 return true;
             }
         }
