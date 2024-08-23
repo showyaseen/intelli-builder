@@ -1,4 +1,20 @@
-### IntelliBuilder Plugin Documentation
+### IntelliBuilder Documentation
+
+**Plugin Name:** IntelliBuilder
+**Plugin URI:** https://wordpress.com/plugins/intelli-builder
+**Description:** A WordPress plugin designed to control the visibility of Gutenberg blocks based on various user-defined rules.
+**Version:** 0.0.2
+**Author:** Yaseen Taha
+**Author URI:** showyaseen@hotmail.com
+**License:** GPLv2 or later
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html
+**Text Domain:** intelli-builder
+**Domain Path:** /languages
+
+**Tested up to:** 6.6
+**Stable tag:** 0.0.2
+**Requires PHP:** 7.4
+**Requires at least:** 7.4
 
 #### Plugin Description
 
@@ -20,15 +36,6 @@
 - **Membership Sites**: Show exclusive content to logged-in members only.
 - **Marketing Campaigns**: Display promotional content to users coming from specific referral sources.
 - **Localization**: Provide region-specific information based on the user's geolocation.
-
-#### Technical Documentation
-
-**Key Files and Directories:**
-
-- **`index.php`**: The main plugin file that initializes the plugin and hooks into WordPress.
-- **`src/blocks/visibilty-settings/index.js`**: Entry point for the visibility settings block, handling the registration and rendering of the block in the Gutenberg editor.
-- **`src/blocks/visibilty-settings/components/`**: React components for various settings and UI elements.
-  - **conditions/**: Subdirectories categorize conditions into user, web-based, and date-time criteria.
 
 **How It Works:**
 

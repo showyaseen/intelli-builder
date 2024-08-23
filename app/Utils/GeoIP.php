@@ -55,9 +55,14 @@ class GeoIP {
     private function get_user_location() {
         $ip = $this->get_ip_address();
         $url = "http://ip-api.com/json/{$ip}";
-        $response = file_get_contents($url);
-        $data = json_decode($response, true);
+        $response = wp_remote_get($url);
+        if (is_wp_error($response)) {
+            return;
+        }
+        $body = wp_remote_retrieve_body($response);
+        $data = json_decode($body, true);
 
+        // Check if the response is successful
         if ($data['status'] === 'success') {
             $this->country = strtolower($data['country']);
             $this->city = strtolower($data['city']);

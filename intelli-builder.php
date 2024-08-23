@@ -91,7 +91,7 @@ final class IntelliBuilder
 	private function load_textdomain()
 	{
 		load_plugin_textdomain(
-			'intellibuilder',
+			'intelli-builder',
 			false,
 			dirname(plugin_basename(__FILE__)) . '/languages'
 		);
@@ -102,9 +102,6 @@ final class IntelliBuilder
 	 */
 	private function register_services()
 	{
-		// Register Admin Menu.
-		\YTAHA\IntelliBuilder\Admin\AdminMenu::get_instance();
-
 		// Register Block Assets Loader.
 		\YTAHA\IntelliBuilder\Blocks\BlockLoader::get_instance();
 

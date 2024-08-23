@@ -56,7 +56,9 @@ class BlockLoader {
 
         wp_enqueue_style(
             'intilli_builder_visibility_settings',
-            YTAHA_INTELLI_BUILDER_ASSETS_URL . '/blocks/visibilty-settings/index.css'
+            YTAHA_INTELLI_BUILDER_ASSETS_URL . '/blocks/visibilty-settings/index.css',
+			array(),
+			YTAHA_INTELLI_BUILDER_VERSION
         );
     }
 }
