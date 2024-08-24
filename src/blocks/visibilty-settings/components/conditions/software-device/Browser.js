@@ -48,7 +48,7 @@ const browserLanguages = [
 const Browser = ({ attributes, setAttributes }) => {
 	const [browserNamesSelected, setBrowserNamesSelected] = useState(attributes?.intelliBuidlerSettings?.browser_name || []);
 	const [browserLanguagesSelected, setBrowserLanguagesSelected] = useState(attributes?.intelliBuidlerSettings?.browser_language.map(lang => Object.values(lang)[0]) || []);
-	console.log('attributes?.intelliBuidlerSettings?.browser_language', attributes?.intelliBuidlerSettings?.browser_language);
+
 	/**
 	 * Handles change in selected browser names.
 	 *

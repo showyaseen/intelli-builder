@@ -4,13 +4,10 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitbdc202bdceedb6d43274743b948e0e59
+class ComposerStaticInitab5c902ea406fd1de01e5a0e3c03a116
 {
     public static $files = array (
         '04c6c5c2f7095ccf6c481d3e53e1776f' => __DIR__ . '/..' . '/mustangostang/spyc/Spyc.php',
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -26,11 +23,6 @@ class ComposerStaticInitbdc202bdceedb6d43274743b948e0e59
         array (
             'UAParser\\' => 9,
         ),
-        'P' => 
-        array (
-            'Psr\\Http\\Message\\' => 17,
-            'Psr\\Http\\Client\\' => 16,
-        ),
         'L' => 
         array (
             'League\\Pipeline\\' => 16,
@@ -39,19 +31,12 @@ class ComposerStaticInitbdc202bdceedb6d43274743b948e0e59
         array (
             'Jaybizzle\\CrawlerDetect\\' => 24,
         ),
-        'G' => 
-        array (
-            'GuzzleHttp\\Psr7\\' => 16,
-            'GuzzleHttp\\Promise\\' => 19,
-            'GuzzleHttp\\' => 11,
-        ),
         'D' => 
         array (
             'DeviceDetector\\' => 15,
         ),
         'C' => 
         array (
-            'Composer\\Installers\\' => 20,
             'Composer\\CaBundle\\' => 18,
         ),
     );
@@ -69,15 +54,6 @@ class ComposerStaticInitbdc202bdceedb6d43274743b948e0e59
         array (
             0 => __DIR__ . '/..' . '/ua-parser/uap-php/src',
         ),
-        'Psr\\Http\\Message\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
-        ),
-        'Psr\\Http\\Client\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/http-client/src',
-        ),
         'League\\Pipeline\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/pipeline/src',
@@ -86,25 +62,9 @@ class ComposerStaticInitbdc202bdceedb6d43274743b948e0e59
         array (
             0 => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src',
         ),
-        'GuzzleHttp\\Psr7\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
-        ),
-        'GuzzleHttp\\Promise\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
-        ),
-        'GuzzleHttp\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
-        ),
         'DeviceDetector\\' => 
         array (
             0 => __DIR__ . '/..' . '/matomo/device-detector',
-        ),
-        'Composer\\Installers\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
         ),
         'Composer\\CaBundle\\' => 
         array (
@@ -123,17 +83,137 @@ class ComposerStaticInitbdc202bdceedb6d43274743b948e0e59
     );
 
     public static $classMap = array (
+        'Composer\\CaBundle\\CaBundle' => __DIR__ . '/..' . '/composer/ca-bundle/src/CaBundle.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Detection\\MobileDetect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/namespaced/Detection/MobileDetect.php',
+        'DeviceDetector\\Cache\\CacheInterface' => __DIR__ . '/..' . '/matomo/device-detector/Cache/CacheInterface.php',
+        'DeviceDetector\\Cache\\DoctrineBridge' => __DIR__ . '/..' . '/matomo/device-detector/Cache/DoctrineBridge.php',
+        'DeviceDetector\\Cache\\LaravelCache' => __DIR__ . '/..' . '/matomo/device-detector/Cache/LaravelCache.php',
+        'DeviceDetector\\Cache\\PSR16Bridge' => __DIR__ . '/..' . '/matomo/device-detector/Cache/PSR16Bridge.php',
+        'DeviceDetector\\Cache\\PSR6Bridge' => __DIR__ . '/..' . '/matomo/device-detector/Cache/PSR6Bridge.php',
+        'DeviceDetector\\Cache\\StaticCache' => __DIR__ . '/..' . '/matomo/device-detector/Cache/StaticCache.php',
+        'DeviceDetector\\ClientHints' => __DIR__ . '/..' . '/matomo/device-detector/ClientHints.php',
+        'DeviceDetector\\DeviceDetector' => __DIR__ . '/..' . '/matomo/device-detector/DeviceDetector.php',
+        'DeviceDetector\\Parser\\AbstractBotParser' => __DIR__ . '/..' . '/matomo/device-detector/Parser/AbstractBotParser.php',
+        'DeviceDetector\\Parser\\AbstractParser' => __DIR__ . '/..' . '/matomo/device-detector/Parser/AbstractParser.php',
+        'DeviceDetector\\Parser\\Bot' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Bot.php',
+        'DeviceDetector\\Parser\\Client\\AbstractClientParser' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Client/AbstractClientParser.php',
+        'DeviceDetector\\Parser\\Client\\Browser' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Client/Browser.php',
+        'DeviceDetector\\Parser\\Client\\Browser\\Engine' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Client/Browser/Engine.php',
+        'DeviceDetector\\Parser\\Client\\Browser\\Engine\\Version' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Client/Browser/Engine/Version.php',
+        'DeviceDetector\\Parser\\Client\\FeedReader' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Client/FeedReader.php',
+        'DeviceDetector\\Parser\\Client\\Hints\\AppHints' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Client/Hints/AppHints.php',
+        'DeviceDetector\\Parser\\Client\\Hints\\BrowserHints' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Client/Hints/BrowserHints.php',
+        'DeviceDetector\\Parser\\Client\\Library' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Client/Library.php',
+        'DeviceDetector\\Parser\\Client\\MediaPlayer' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Client/MediaPlayer.php',
+        'DeviceDetector\\Parser\\Client\\MobileApp' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Client/MobileApp.php',
+        'DeviceDetector\\Parser\\Client\\PIM' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Client/PIM.php',
+        'DeviceDetector\\Parser\\Device\\AbstractDeviceParser' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Device/AbstractDeviceParser.php',
+        'DeviceDetector\\Parser\\Device\\Camera' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Device/Camera.php',
+        'DeviceDetector\\Parser\\Device\\CarBrowser' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Device/CarBrowser.php',
+        'DeviceDetector\\Parser\\Device\\Console' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Device/Console.php',
+        'DeviceDetector\\Parser\\Device\\HbbTv' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Device/HbbTv.php',
+        'DeviceDetector\\Parser\\Device\\Mobile' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Device/Mobile.php',
+        'DeviceDetector\\Parser\\Device\\Notebook' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Device/Notebook.php',
+        'DeviceDetector\\Parser\\Device\\PortableMediaPlayer' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Device/PortableMediaPlayer.php',
+        'DeviceDetector\\Parser\\Device\\ShellTv' => __DIR__ . '/..' . '/matomo/device-detector/Parser/Device/ShellTv.php',
+        'DeviceDetector\\Parser\\OperatingSystem' => __DIR__ . '/..' . '/matomo/device-detector/Parser/OperatingSystem.php',
+        'DeviceDetector\\Parser\\VendorFragment' => __DIR__ . '/..' . '/matomo/device-detector/Parser/VendorFragment.php',
+        'DeviceDetector\\Yaml\\ParserInterface' => __DIR__ . '/..' . '/matomo/device-detector/Yaml/ParserInterface.php',
+        'DeviceDetector\\Yaml\\Pecl' => __DIR__ . '/..' . '/matomo/device-detector/Yaml/Pecl.php',
+        'DeviceDetector\\Yaml\\Spyc' => __DIR__ . '/..' . '/matomo/device-detector/Yaml/Spyc.php',
+        'DeviceDetector\\Yaml\\Symfony' => __DIR__ . '/..' . '/matomo/device-detector/Yaml/Symfony.php',
+        'Jaybizzle\\CrawlerDetect\\CrawlerDetect' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/CrawlerDetect.php',
+        'Jaybizzle\\CrawlerDetect\\Fixtures\\AbstractProvider' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/AbstractProvider.php',
+        'Jaybizzle\\CrawlerDetect\\Fixtures\\Crawlers' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Crawlers.php',
+        'Jaybizzle\\CrawlerDetect\\Fixtures\\Exclusions' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Exclusions.php',
+        'Jaybizzle\\CrawlerDetect\\Fixtures\\Headers' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Headers.php',
+        'League\\Pipeline\\FingersCrossedProcessor' => __DIR__ . '/..' . '/league/pipeline/src/FingersCrossedProcessor.php',
+        'League\\Pipeline\\InterruptibleProcessor' => __DIR__ . '/..' . '/league/pipeline/src/InterruptibleProcessor.php',
+        'League\\Pipeline\\Pipeline' => __DIR__ . '/..' . '/league/pipeline/src/Pipeline.php',
+        'League\\Pipeline\\PipelineBuilder' => __DIR__ . '/..' . '/league/pipeline/src/PipelineBuilder.php',
+        'League\\Pipeline\\PipelineBuilderInterface' => __DIR__ . '/..' . '/league/pipeline/src/PipelineBuilderInterface.php',
+        'League\\Pipeline\\PipelineInterface' => __DIR__ . '/..' . '/league/pipeline/src/PipelineInterface.php',
+        'League\\Pipeline\\ProcessorInterface' => __DIR__ . '/..' . '/league/pipeline/src/ProcessorInterface.php',
+        'League\\Pipeline\\StageInterface' => __DIR__ . '/..' . '/league/pipeline/src/StageInterface.php',
         'Mobile_Detect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
+        'UAParser\\AbstractParser' => __DIR__ . '/..' . '/ua-parser/uap-php/src/AbstractParser.php',
+        'UAParser\\Command\\ConvertCommand' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Command/ConvertCommand.php',
+        'UAParser\\Command\\FetchCommand' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Command/FetchCommand.php',
+        'UAParser\\Command\\LogfileCommand' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Command/LogfileCommand.php',
+        'UAParser\\Command\\ParserCommand' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Command/ParserCommand.php',
+        'UAParser\\Command\\UpdateCommand' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Command/UpdateCommand.php',
+        'UAParser\\DeviceParser' => __DIR__ . '/..' . '/ua-parser/uap-php/src/DeviceParser.php',
+        'UAParser\\Exception\\DomainException' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Exception/DomainException.php',
+        'UAParser\\Exception\\FetcherException' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Exception/FetcherException.php',
+        'UAParser\\Exception\\FileNotFoundException' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Exception/FileNotFoundException.php',
+        'UAParser\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Exception/InvalidArgumentException.php',
+        'UAParser\\Exception\\ReaderException' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Exception/ReaderException.php',
+        'UAParser\\OperatingSystemParser' => __DIR__ . '/..' . '/ua-parser/uap-php/src/OperatingSystemParser.php',
+        'UAParser\\Parser' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Parser.php',
+        'UAParser\\ParserFactoryMethods' => __DIR__ . '/..' . '/ua-parser/uap-php/src/ParserFactoryMethods.php',
+        'UAParser\\Result\\AbstractClient' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Result/AbstractClient.php',
+        'UAParser\\Result\\AbstractSoftware' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Result/AbstractSoftware.php',
+        'UAParser\\Result\\AbstractVersionedSoftware' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Result/AbstractVersionedSoftware.php',
+        'UAParser\\Result\\Client' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Result/Client.php',
+        'UAParser\\Result\\Device' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Result/Device.php',
+        'UAParser\\Result\\OperatingSystem' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Result/OperatingSystem.php',
+        'UAParser\\Result\\UserAgent' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Result/UserAgent.php',
+        'UAParser\\UserAgentParser' => __DIR__ . '/..' . '/ua-parser/uap-php/src/UserAgentParser.php',
+        'UAParser\\Util\\CodeGenerator' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Util/CodeGenerator.php',
+        'UAParser\\Util\\Converter' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Util/Converter.php',
+        'UAParser\\Util\\Fetcher' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Util/Fetcher.php',
+        'UAParser\\Util\\Logfile\\AbstractReader' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Util/Logfile/AbstractReader.php',
+        'UAParser\\Util\\Logfile\\ApacheCommonLogFormatReader' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Util/Logfile/ApacheCommonLogFormatReader.php',
+        'UAParser\\Util\\Logfile\\ReaderInterface' => __DIR__ . '/..' . '/ua-parser/uap-php/src/Util/Logfile/ReaderInterface.php',
+        'YTAHA\\IntelliBuilder\\Admin\\AdminMenu' => __DIR__ . '/../..' . '/app/Admin/AdminMenu.php',
+        'YTAHA\\IntelliBuilder\\Blocks\\BlockLoader' => __DIR__ . '/../..' . '/app/Blocks/BlockLoader.php',
+        'YTAHA\\IntelliBuilder\\Blocks\\ConditionalBlockRender' => __DIR__ . '/../..' . '/app/Blocks/ConditionalBlockRender.php',
+        'YTAHA\\IntelliBuilder\\Controllers\\ConditionalRulesController' => __DIR__ . '/../..' . '/app/Controllers/ConditionalRulesController.php',
+        'YTAHA\\IntelliBuilder\\Rules\\BrowserLanguage' => __DIR__ . '/../..' . '/app/Rules/BrowserLanguage.php',
+        'YTAHA\\IntelliBuilder\\Rules\\BrowserName' => __DIR__ . '/../..' . '/app/Rules/BrowserName.php',
+        'YTAHA\\IntelliBuilder\\Rules\\City' => __DIR__ . '/../..' . '/app/Rules/City.php',
+        'YTAHA\\IntelliBuilder\\Rules\\Contract\\Rule' => __DIR__ . '/../..' . '/app/Rules/Contract/Rule.php',
+        'YTAHA\\IntelliBuilder\\Rules\\Country' => __DIR__ . '/../..' . '/app/Rules/Country.php',
+        'YTAHA\\IntelliBuilder\\Rules\\DateTime' => __DIR__ . '/../..' . '/app/Rules/DateTime.php',
+        'YTAHA\\IntelliBuilder\\Rules\\DeviceType' => __DIR__ . '/../..' . '/app/Rules/DeviceType.php',
+        'YTAHA\\IntelliBuilder\\Rules\\OperatingSystem' => __DIR__ . '/../..' . '/app/Rules/OperatingSystem.php',
+        'YTAHA\\IntelliBuilder\\Rules\\Referral' => __DIR__ . '/../..' . '/app/Rules/Referral.php',
+        'YTAHA\\IntelliBuilder\\Rules\\ReturningUser' => __DIR__ . '/../..' . '/app/Rules/ReturningUser.php',
+        'YTAHA\\IntelliBuilder\\Rules\\RulesHandlerFactory' => __DIR__ . '/../..' . '/app/Rules/RulesHandlerFactory.php',
+        'YTAHA\\IntelliBuilder\\Rules\\UserName' => __DIR__ . '/../..' . '/app/Rules/UserName.php',
+        'YTAHA\\IntelliBuilder\\Rules\\UserRole' => __DIR__ . '/../..' . '/app/Rules/UserRole.php',
+        'YTAHA\\IntelliBuilder\\Rules\\UserStatus' => __DIR__ . '/../..' . '/app/Rules/UserStatus.php',
+        'YTAHA\\IntelliBuilder\\Traits\\SingletonTrait' => __DIR__ . '/../..' . '/app/Traits/SingletonTrait.php',
+        'YTAHA\\IntelliBuilder\\Utils\\CookieManager' => __DIR__ . '/../..' . '/app/Utils/CookieManager.php',
+        'YTAHA\\IntelliBuilder\\Utils\\GeoIP' => __DIR__ . '/../..' . '/app/Utils/GeoIP.php',
+        'hisorange\\BrowserDetect\\Contracts\\ParserInterface' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Contracts/ParserInterface.php',
+        'hisorange\\BrowserDetect\\Contracts\\PayloadInterface' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Contracts/PayloadInterface.php',
+        'hisorange\\BrowserDetect\\Contracts\\ResultInterface' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Contracts/ResultInterface.php',
+        'hisorange\\BrowserDetect\\Contracts\\StageInterface' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Contracts/StageInterface.php',
+        'hisorange\\BrowserDetect\\Exceptions\\BadMethodCallException' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Exceptions/BadMethodCallException.php',
+        'hisorange\\BrowserDetect\\Exceptions\\Exception' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Exceptions/Exception.php',
+        'hisorange\\BrowserDetect\\Exceptions\\InvalidArgumentException' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Exceptions/InvalidArgumentException.php',
+        'hisorange\\BrowserDetect\\Exceptions\\RuntimeException' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Exceptions/RuntimeException.php',
+        'hisorange\\BrowserDetect\\Facade' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Facade.php',
+        'hisorange\\BrowserDetect\\Parser' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Parser.php',
+        'hisorange\\BrowserDetect\\Payload' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Payload.php',
+        'hisorange\\BrowserDetect\\Result' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Result.php',
+        'hisorange\\BrowserDetect\\ServiceProvider' => __DIR__ . '/..' . '/hisorange/browser-detect/src/ServiceProvider.php',
+        'hisorange\\BrowserDetect\\Stages\\BrowserDetect' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Stages/BrowserDetect.php',
+        'hisorange\\BrowserDetect\\Stages\\CrawlerDetect' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Stages/CrawlerDetect.php',
+        'hisorange\\BrowserDetect\\Stages\\DeviceDetector' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Stages/DeviceDetector.php',
+        'hisorange\\BrowserDetect\\Stages\\MobileDetect' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Stages/MobileDetect.php',
+        'hisorange\\BrowserDetect\\Stages\\UAParser' => __DIR__ . '/..' . '/hisorange/browser-detect/src/Stages/UAParser.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitbdc202bdceedb6d43274743b948e0e59::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitbdc202bdceedb6d43274743b948e0e59::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitbdc202bdceedb6d43274743b948e0e59::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitbdc202bdceedb6d43274743b948e0e59::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitab5c902ea406fd1de01e5a0e3c03a116::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitab5c902ea406fd1de01e5a0e3c03a116::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitab5c902ea406fd1de01e5a0e3c03a116::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitab5c902ea406fd1de01e5a0e3c03a116::$classMap;
 
         }, null, ClassLoader::class);
     }

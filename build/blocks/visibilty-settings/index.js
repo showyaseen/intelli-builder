@@ -796,7 +796,7 @@ const Browser = ({
 }) => {
   const [browserNamesSelected, setBrowserNamesSelected] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(attributes?.intelliBuidlerSettings?.browser_name || []);
   const [browserLanguagesSelected, setBrowserLanguagesSelected] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(attributes?.intelliBuidlerSettings?.browser_language.map(lang => Object.values(lang)[0]) || []);
-  console.log('attributes?.intelliBuidlerSettings?.browser_language', attributes?.intelliBuidlerSettings?.browser_language);
+
   /**
    * Handles change in selected browser names.
    *

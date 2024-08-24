@@ -6,10 +6,11 @@ yarn-error.log*
 
 # Dependency directories
 node_modules/
-vendor/
 
 # Optional npm cache directory
 .npm
+
+.editorconfig
 
 # Optional eslint cache
 .eslintcache
