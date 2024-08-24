@@ -3,7 +3,7 @@
  * Plugin Name: IntelliBuilder
  * Plugin URI: https://wordpress.com/plugins/intelli-builder
  * Description: IntelliBuilder is a WordPress plugin that controls who sees your content based on user rules, web-based rules, and scheduled time.
- * Version: 0.0.1
+ * Version: 1.0.0
  * Author: Yaseen Taha
  * Author URI: showyaseen@hotmail.com
  * License: GPL2
@@ -27,45 +27,48 @@ use YTAHA\IntelliBuilder\Traits\SingletonTrait;
  */
 class UserName implements Rule {
 
-    use SingletonTrait;
+	use SingletonTrait;
 
-    /**
-     * @var array $user_names The list of usernames to check against the logged-in user's username.
-     */
-    protected $user_names;
+	/**
+	 * @var array $user_names The list of usernames to check against the logged-in user's username.
+	 */
+	protected $user_names;
 
-    /**
-     * UserName constructor.
-     *
-     * @param array $rules The rules array containing the specific usernames.
-     */
-    public function __construct($rules) {
-        $this->user_names = $rules['specificUsers'] ?? [];
-    }
+	/**
+	 * UserName constructor.
+	 *
+	 * @param array $rules The rules array containing the specific usernames.
+	 */
+	public function __construct( $rules ) {
+		$this->user_names = isset( $rules['specificUsers'] ) ? array_map( 'sanitize_text_field', $rules['specificUsers'] ) : array();
+	}
 
-    /**
-     * Get the logged-in user's display name.
-     *
-     * @return string The display name of the logged-in user or an empty string if no user is logged in.
-     */
-    public function get_user_name(): string {
-        if (is_user_logged_in()) {
-            $user = wp_get_current_user();
-            return $user->display_name;
-        }
-        return '';
-    }
+	/**
+	 * Get the logged-in user's display name.
+	 *
+	 * @return string The display name of the logged-in user or an empty string if no user is logged in.
+	 */
+	public function get_user_name(): string {
+		if ( is_user_logged_in() ) {
+			$user = wp_get_current_user();
+			return $user->display_name;
+		}
+		return '';
+	}
 
-    /**
-     * Check if the logged-in user's username matches any of the specified usernames.
-     *
-     * @return bool True if a match is found, false otherwise.
-     */
-    public function is_met(): bool {
-        $names = array_map(function ($name) {
-            return strtolower($name);
-        }, $this->user_names);
+	/**
+	 * Check if the logged-in user's username matches any of the specified usernames.
+	 *
+	 * @return bool True if a match is found, false otherwise.
+	 */
+	public function is_met(): bool {
+		$names = array_map(
+			function ( $name ) {
+				return strtolower( $name );
+			},
+			$this->user_names
+		);
 
-        return in_array(strtolower($this->get_user_name()), $names);
-    }
+		return in_array( strtolower( $this->get_user_name() ), $names );
+	}
 }

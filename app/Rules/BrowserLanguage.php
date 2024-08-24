@@ -3,9 +3,9 @@
  * Plugin Name: IntelliBuilder
  * Plugin URI: https://wordpress.com/plugins/intelli-builder
  * Description: IntelliBuilder is a WordPress plugin that controls who sees your content based on user rules, web-based rules, and scheduled time.
- * Version: 0.0.1
+ * Version: 1.0.0
  * Author: Yaseen Taha
- * Author URI: showyaseen@hotmail.com
+ * Author URI: mailto:showyaseen@hotmail.com
  * License: GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: intelli-builder
@@ -21,41 +21,44 @@ use YTAHA\IntelliBuilder\Traits\SingletonTrait;
 /**
  * Class BrowserLanguage
  *
- * This class checks if the user's browser language matches any of the specified languages.
+ * Checks if the user's browser language matches any of the specified languages.
  *
  * @package YTAHA\IntelliBuilder
  */
 class BrowserLanguage implements Rule {
 
-    use SingletonTrait;
+	use SingletonTrait;
 
-    /**
-     * @var array $languages The list of languages to check against the user's browser language.
-     */
-    protected $languages;
+	/**
+	 * The list of languages to check against the user's browser language.
+	 *
+	 * @var array
+	 */
+	protected $languages = array();
 
-    /**
-     * BrowserLanguage constructor.
-     *
-     * @param array $rules The rules array containing the browser language rules.
-     */
-    public function __construct($rules) {
-        $this->languages = $rules['browser_language'] ?? [];
-    }
+	/**
+	 * BrowserLanguage constructor.
+	 *
+	 * @param array $rules The rules array containing the browser language rules.
+	 */
+	public function __construct( array $rules ) {
+		$this->languages = isset( $rules['browser_language'] ) ? array_map( 'sanitize_text_field', $rules['browser_language'] ) : array();
+	}
 
-    /**
-     * Check if the user's browser language matches any of the specified languages.
-     *
-     * @return bool True if a match is found, false otherwise.
-     */
-    public function is_met(): bool {
-        $user_language = strtolower($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-        foreach ($this->languages as $language) {
-			$lang_code = array_key_first($language);
-            if (strpos($user_language, strtolower($lang_code)) !== false) {
-                return true;
-            }
-        }
-        return false;
-    }
+	/**
+	 * Check if the user's browser language matches any of the specified languages.
+	 *
+	 * @return bool True if a match is found, false otherwise.
+	 */
+	public function is_met(): bool {
+		$user_language = strtolower( sanitize_text_field( wp_unslash( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '' ) ) );
+
+		foreach ( $this->languages as $language ) {
+			if ( strpos( $user_language, strtolower( $language ) ) !== false ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 }

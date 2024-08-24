@@ -12,22 +12,45 @@ import { __ } from '@wordpress/i18n';
 const COUNTRIES_CACHE_KEY = 'geolocation_countries_cities';
 
 const fetchCountriesCitiesAPI = async () => {
-	const cachedCountriesCities = cache.getCache(COUNTRIES_CACHE_KEY);
-	if (cachedCountriesCities?.countries && cachedCountriesCities?.cities) {
-		return cachedCountriesCities;
-	}
+	try {
+		// Attempt to retrieve data from cache
+		const cachedCountriesCities = cache.getCache(COUNTRIES_CACHE_KEY);
+		if (cachedCountriesCities?.countries && cachedCountriesCities?.cities) {
+			return cachedCountriesCities;
+		}
 
-	const response = await fetch('https://countriesnow.space/api/v0.1/countries');
-	const data = await response.json();
-	if (!data.error && data.data.length > 0) {
-		const countries = data.data;
-		const cities = countries.flatMap(country => country.cities.map(city => `${city}-${country.country}`));
-		const countriesCities = { countries: countries, cities: cities }
+		// Fetch data from API
+		const response = await fetch('https://countriesnow.space/api/v0.1/countries');
+		if (!response.ok) {
+			throw new Error('Failed to fetch countries and cities');
+		}
+
+		const { error, data } = await response.json();
+		if (error || !Array.isArray(data)) {
+			throw new Error('Invalid API response');
+		}
+
+		// Sanitize and map countries and cities data
+		const countries = data.map(({ country, cities }) => ({
+			country: wp.escapeHtml(country),
+			cities: cities.map(city => wp.escapeHtml(city)),
+		}));
+
+		const cities = countries.flatMap(({ country, cities }) =>
+			cities.map(city => `${city}-${country}`)
+		);
+
+		const countriesCities = { countries, cities };
+
+		// Cache the sanitized data
 		cache.setCache(COUNTRIES_CACHE_KEY, countriesCities);
-		return countriesCities;
-	}
 
-	return [];
+		return countriesCities;
+	} catch (error) {
+		// Log error and return empty data structure
+		console.error('Error fetching countries and cities:', error);
+		return { countries: [], cities: [] };
+	}
 };
 
 /**

@@ -3,7 +3,7 @@
  * Plugin Name: IntelliBuilder
  * Plugin URI: https://wordpress.com/plugins/intelli-builder
  * Description: IntelliBuilder is a WordPress plugin that controls who sees your content based on user rules, web-based rules, and scheduled time.
- * Version: 0.0.1
+ * Version: 1.0.0
  * Author: Yaseen Taha
  * Author URI: showyaseen@hotmail.com
  * License: GPL2
@@ -27,38 +27,38 @@ use YTAHA\IntelliBuilder\Traits\SingletonTrait;
  * @package YTAHA\IntelliBuilder
  */
 class BlockLoader {
-    use SingletonTrait;
+	use SingletonTrait;
 
-    /**
-     * BlockLoader constructor.
-     * Registers the action to enqueue block editor assets.
-     */
-    private function __construct() {
-        add_action('enqueue_block_editor_assets', [$this, 'register_block_visibility_settings']);
-    }
+	/**
+	 * BlockLoader constructor.
+	 * Registers the action to enqueue block editor assets.
+	 */
+	private function __construct() {
+		add_action( 'enqueue_block_editor_assets', array( $this, 'register_block_visibility_settings' ) );
+	}
 
-    /**
-     * Register block visibility settings assets.
-     * Enqueues the necessary scripts and styles for block visibility settings.
-     *
-     * @return void
-     */
-    public function register_block_visibility_settings(): void {
-        $assets = include YTAHA_INTELLI_BUILDER_DIR . 'build/blocks/visibilty-settings/index.asset.php';
+	/**
+	 * Register block visibility settings assets.
+	 * Enqueues the necessary scripts and styles for block visibility settings.
+	 *
+	 * @return void
+	 */
+	public function register_block_visibility_settings(): void {
+		$assets = include YTAHA_INTELLI_BUILDER_DIR . 'build/blocks/visibilty-settings/index.asset.php';
 
-        wp_enqueue_script(
-            'intilli_builder_visibility_settings',
-            YTAHA_INTELLI_BUILDER_ASSETS_URL . '/blocks/visibilty-settings/index.js',
-            $assets['dependencies'],
-            $assets['version'],
-            true
-        );
+		wp_enqueue_script(
+			'intilli_builder_visibility_settings',
+			YTAHA_INTELLI_BUILDER_ASSETS_URL . '/blocks/visibilty-settings/index.js',
+			$assets['dependencies'],
+			$assets['version'],
+			true
+		);
 
-        wp_enqueue_style(
-            'intilli_builder_visibility_settings',
-            YTAHA_INTELLI_BUILDER_ASSETS_URL . '/blocks/visibilty-settings/index.css',
+		wp_enqueue_style(
+			'intilli_builder_visibility_settings',
+			YTAHA_INTELLI_BUILDER_ASSETS_URL . '/blocks/visibilty-settings/index.css',
 			array(),
 			YTAHA_INTELLI_BUILDER_VERSION
-        );
-    }
+		);
+	}
 }

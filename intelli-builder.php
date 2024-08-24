@@ -4,7 +4,7 @@
  * Plugin Name: IntelliBuilder (new)
  * Plugin URI: https://wordpress.com/plugins/intelli-builder
  * Description: IntelliBuilder is a WordPress plugin that control who sees your content based on user rules, web-based rules, and scheduled time.
- * Version: 0.0.1
+ * Version: 1.0.0
  * Author: Yaseen Taha
  * Author URI: showyaseen@hotmail.com
  * License: GPL2
@@ -49,7 +49,7 @@ final class IntelliBuilder
 	{
 		// Plugin version.
 		if (!defined('YTAHA_INTELLI_BUILDER_VERSION')) {
-			define('YTAHA_INTELLI_BUILDER_VERSION', '0.0.1');
+			define('YTAHA_INTELLI_BUILDER_VERSION', '1.0.0');
 		}
 
 		// Plugin directory.

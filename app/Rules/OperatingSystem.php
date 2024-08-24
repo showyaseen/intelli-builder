@@ -3,7 +3,7 @@
  * Plugin Name: IntelliBuilder
  * Plugin URI: https://wordpress.com/plugins/intelli-builder
  * Description: IntelliBuilder is a WordPress plugin that controls who sees your content based on user rules, web-based rules, and scheduled time.
- * Version: 0.0.1
+ * Version: 1.0.0
  * Author: Yaseen Taha
  * Author URI: showyaseen@hotmail.com
  * License: GPL2
@@ -28,33 +28,33 @@ use hisorange\BrowserDetect\Parser as Browser;
  */
 class OperatingSystem implements Rule {
 
-    use SingletonTrait;
+	use SingletonTrait;
 
-    /**
-     * @var array $osList List of operating systems to check against.
-     */
-    protected $osList;
+	/**
+	 * @var array $osList List of operating systems to check against.
+	 */
+	protected $osList;
 
-    /**
-     * OperatingSystem constructor.
-     *
-     * @param array $rules The rules array containing the operating system criteria.
-     */
-    public function __construct(array $rules) {
-        $this->osList = $rules['operatingSystem'] ?? [];
-    }
+	/**
+	 * OperatingSystem constructor.
+	 *
+	 * @param array $rules The rules array containing the operating system criteria.
+	 */
+	public function __construct( array $rules ) {
+		$this->osList = isset( $rules['operatingSystem'] ) ? array_map( 'sanitize_text_field', $rules['operatingSystem'] ) : array();
+	}
 
-    /**
-     * Check if the user's operating system matches any in the list.
-     *
-     * @return bool True if the operating system matches, false otherwise.
-     */
-    public function is_met(): bool {
-        foreach ($this->osList as $os) {
-            if (strtolower(Browser::platformFamily()) === strtolower($os)) {
-                return true;
-            }
-        }
-        return false;
-    }
+	/**
+	 * Check if the user's operating system matches any in the list.
+	 *
+	 * @return bool True if the operating system matches, false otherwise.
+	 */
+	public function is_met(): bool {
+		foreach ( $this->osList as $os ) {
+			if ( strtolower( Browser::platformFamily() ) === strtolower( $os ) ) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

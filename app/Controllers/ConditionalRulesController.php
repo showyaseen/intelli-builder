@@ -3,7 +3,7 @@
  * Plugin Name: IntelliBuilder
  * Plugin URI: https://wordpress.com/plugins/intelli-builder
  * Description: IntelliBuilder is a WordPress plugin that controls who sees your content based on user rules, web-based rules, and scheduled time.
- * Version: 0.0.1
+ * Version: 1.0.0
  * Author: Yaseen Taha
  * Author URI: showyaseen@hotmail.com
  * License: GPL2
@@ -27,62 +27,62 @@ use YTAHA\IntelliBuilder\Traits\SingletonTrait;
  */
 class ConditionalRulesController {
 
-    use SingletonTrait;
+	use SingletonTrait;
 
-    /**
-     * Determine if content should be rendered based on the provided rules.
-     *
-     * @param array $rules The rules for rendering content.
-     * @return bool True if content should be rendered, false otherwise.
-     */
-    public function should_render(array $rules): bool {
-        $action = $rules['action'] ?? null;
-        $match = $rules['match'] ?? null;
-        $is_matched = false;
+	/**
+	 * Determine if content should be rendered based on the provided rules.
+	 *
+	 * @param array $rules The rules for rendering content.
+	 * @return bool True if content should be rendered, false otherwise.
+	 */
+	public function should_render( array $rules ): bool {
+		$action     = sanitize_text_field( $rules['action'] ) ?? null;
+		$match      = sanitize_text_field( $rules['match'] ) ?? null;
+		$is_matched = false;
 
-        if (null !== $action && null !== $match) {
-            if ('any' === $match) {
-                $is_matched = $this->match_any($rules);
-            } else {
-                $is_matched = $this->match_all($rules);
-            }
-        }
+		if ( null !== $action && null !== $match ) {
+			if ( 'any' === $match ) {
+				$is_matched = $this->match_any( $rules );
+			} else {
+				$is_matched = $this->match_all( $rules );
+			}
+		}
 
-        return ('show' === $action) ? $is_matched : !$is_matched;
-    }
+		return ( 'show' === $action ) ? $is_matched : ! $is_matched;
+	}
 
-    /**
-     * Check if all rules are met.
-     *
-     * @param array $rules The rules to check.
-     * @return bool True if all rules are met, false otherwise.
-     */
-    private function match_all(array $rules): bool {
-        foreach ($rules as $rule_name => $rule_params) {
-            if (empty($rule_params)) {
-                continue;
-            }
-            $rule_handler = RulesHandlerFactory::get_rule_handler($rule_name, $rules);
-            if ($rule_handler && !$rule_handler->is_met()) {
-                return false;
-            }
-        }
-        return true;
-    }
+	/**
+	 * Check if all rules are met.
+	 *
+	 * @param array $rules The rules to check.
+	 * @return bool True if all rules are met, false otherwise.
+	 */
+	private function match_all( array $rules ): bool {
+		foreach ( $rules as $rule_name => $rule_params ) {
+			if ( empty( $rule_params ) ) {
+				continue;
+			}
+			$rule_handler = RulesHandlerFactory::get_rule_handler( $rule_name, $rules );
+			if ( $rule_handler && ! $rule_handler->is_met() ) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-    /**
-     * Check if any rule is met.
-     *
-     * @param array $rules The rules to check.
-     * @return bool True if any rule is met, false otherwise.
-     */
-    private function match_any(array $rules): bool {
-        foreach ($rules as $rule_name => $rule_params) {
-            $rule_handler = RulesHandlerFactory::get_rule_handler($rule_name, $rules);
-            if ($rule_handler && $rule_handler->is_met()) {
-                return true;
-            }
-        }
-        return false;
-    }
+	/**
+	 * Check if any rule is met.
+	 *
+	 * @param array $rules The rules to check.
+	 * @return bool True if any rule is met, false otherwise.
+	 */
+	private function match_any( array $rules ): bool {
+		foreach ( $rules as $rule_name => $rule_params ) {
+			$rule_handler = RulesHandlerFactory::get_rule_handler( $rule_name, $rules );
+			if ( $rule_handler && $rule_handler->is_met() ) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

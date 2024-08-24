@@ -1,6 +1,6 @@
 {
 	"name": "intelli-builder",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "IntelliBuilder is a WordPress plugin that control who sees your content based on user rules, web-based rules, and scheduled time.",
 	"author": "Yaseen Taha",
 	"license": "GPL-2.0-or-later",

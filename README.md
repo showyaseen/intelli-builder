@@ -5,7 +5,7 @@
 **Plugin Name:** IntelliBuilder
 **Plugin URI:** [https://wordpress.com/plugins/intelli-builder](https://wordpress.com/plugins/intelli-builder)
 **Description:** A WordPress plugin designed to control the visibility of Gutenberg blocks based on various user-defined rules.
-**Version:** 0.0.1
+**Version:** 1.0.0
 **Author:** Yaseen Taha
 **Author URI:** [mailto:showyaseen@hotmail.com](mailto:showyaseen@hotmail.com)
 **License:** GPLv2 or later
@@ -13,7 +13,7 @@
 **Text Domain:** intelli-builder
 **Domain Path:** /languages
 **Tested up to:** 6.6
-**Stable tag:** 0.0.1
+**Stable tag:** 1.0.0
 **Requires PHP:** 7.4
 **Requires at least:** 7.4
 

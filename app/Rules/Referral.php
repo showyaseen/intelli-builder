@@ -3,7 +3,7 @@
  * Plugin Name: IntelliBuilder
  * Plugin URI: https://wordpress.com/plugins/intelli-builder
  * Description: IntelliBuilder is a WordPress plugin that controls who sees your content based on user rules, web-based rules, and scheduled time.
- * Version: 0.0.1
+ * Version: 1.0.0
  * Author: Yaseen Taha
  * Author URI: showyaseen@hotmail.com
  * License: GPL2
@@ -27,38 +27,38 @@ use YTAHA\IntelliBuilder\Traits\SingletonTrait;
  */
 class Referral implements Rule {
 
-    use SingletonTrait;
+	use SingletonTrait;
 
-    /**
-     * @var string $referer The referral source to check against.
-     */
-    protected $referer;
+	/**
+	 * @var string $referer The referral source to check against.
+	 */
+	protected $referer;
 
-    /**
-     * Referral constructor.
-     *
-     * @param array $rules The rules array containing the referral source criteria.
-     */
-    public function __construct(array $rules) {
-        $this->referer = $rules['sourceReferer'] ?? '';
-    }
+	/**
+	 * Referral constructor.
+	 *
+	 * @param array $rules The rules array containing the referral source criteria.
+	 */
+	public function __construct( array $rules ) {
+		$this->referer = sanitize_text_field( $rules['sourceReferer'] ) ?? '';
+	}
 
-    /**
-     * Get the referral URL from the server.
-     *
-     * @return string The referral URL or an empty string if not set.
-     */
-    public function get_referral_url(): string {
-        return $_SERVER['HTTP_REFERER'] ?? '';
-    }
+	/**
+	 * Get the referral URL from the server.
+	 *
+	 * @return string The referral URL or an empty string if not set.
+	 */
+	public function get_referral_url(): string {
+		return sanitize_text_field( wp_unslash( $_SERVER['HTTP_REFERER'] ) ) ?? '';
+	}
 
-    /**
-     * Check if the user's referral URL matches the specified criteria.
-     *
-     * @return bool True if the referral URL matches, false otherwise.
-     */
-    public function is_met(): bool {
-        $userReferral = $this->get_referral_url();
-        return strpos(strtolower($userReferral), strtolower($this->referer)) !== false;
-    }
+	/**
+	 * Check if the user's referral URL matches the specified criteria.
+	 *
+	 * @return bool True if the referral URL matches, false otherwise.
+	 */
+	public function is_met(): bool {
+		$userReferral = $this->get_referral_url();
+		return strpos( strtolower( $userReferral ), strtolower( $this->referer ) ) !== false;
+	}
 }

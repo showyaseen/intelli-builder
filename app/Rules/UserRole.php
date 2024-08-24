@@ -3,7 +3,7 @@
  * Plugin Name: IntelliBuilder
  * Plugin URI: https://wordpress.com/plugins/intelli-builder
  * Description: IntelliBuilder is a WordPress plugin that controls who sees your content based on user rules, web-based rules, and scheduled time.
- * Version: 0.0.1
+ * Version: 1.0.0
  * Author: Yaseen Taha
  * Author URI: showyaseen@hotmail.com
  * License: GPL2
@@ -27,50 +27,53 @@ use YTAHA\IntelliBuilder\Traits\SingletonTrait;
  */
 class UserRole implements Rule {
 
-    use SingletonTrait;
+	use SingletonTrait;
 
-    /**
-     * @var array $roles The list of roles to check against the logged-in user's roles.
-     */
-    protected $roles;
+	/**
+	 * @var array $roles The list of roles to check against the logged-in user's roles.
+	 */
+	protected $roles;
 
-    /**
-     * UserRole constructor.
-     *
-     * @param array $rules The rules array containing the user roles.
-     */
-    public function __construct($rules) {
-        $this->roles = $rules['userRoles'] ?? [];
-    }
+	/**
+	 * UserRole constructor.
+	 *
+	 * @param array $rules The rules array containing the user roles.
+	 */
+	public function __construct( $rules ) {
+		$this->roles = isset( $rules['userRoles'] ) ? array_map( 'sanitize_text_field', $rules['userRoles'] ) : array();
+	}
 
-    /**
-     * Get the logged-in user's roles.
-     *
-     * @return array The roles of the logged-in user or an empty array if no user is logged in.
-     */
-    public function get_user_roles(): array {
-        if (is_user_logged_in()) {
-            $user = wp_get_current_user();
-            return $user->roles;
-        }
-        return [];
-    }
+	/**
+	 * Get the logged-in user's roles.
+	 *
+	 * @return array The roles of the logged-in user or an empty array if no user is logged in.
+	 */
+	public function get_user_roles(): array {
+		if ( is_user_logged_in() ) {
+			$user = wp_get_current_user();
+			return $user->roles;
+		}
+		return array();
+	}
 
-    /**
-     * Check if the logged-in user's role matches any of the specified roles.
-     *
-     * @return bool True if a match is found, false otherwise.
-     */
-    public function is_met(): bool {
-        $roles = array_map(function ($role) {
-            return strtolower($role);
-        }, $this->roles);
+	/**
+	 * Check if the logged-in user's role matches any of the specified roles.
+	 *
+	 * @return bool True if a match is found, false otherwise.
+	 */
+	public function is_met(): bool {
+		$roles = array_map(
+			function ( $role ) {
+				return strtolower( $role );
+			},
+			$this->roles
+		);
 
-        foreach ($this->get_user_roles() as $role) {
-            if (in_array(strtolower($role), $roles)) {
-                return true;
-            }
-        }
-        return false;
-    }
+		foreach ( $this->get_user_roles() as $role ) {
+			if ( in_array( strtolower( $role ), $roles ) ) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

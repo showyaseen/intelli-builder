@@ -3,7 +3,7 @@
  * Plugin Name: IntelliBuilder
  * Plugin URI: https://wordpress.com/plugins/intelli-builder
  * Description: IntelliBuilder is a WordPress plugin that controls who sees your content based on user rules, web-based rules, and scheduled time.
- * Version: 0.0.1
+ * Version: 1.0.0
  * Author: Yaseen Taha
  * Author URI: showyaseen@hotmail.com
  * License: GPL2
@@ -27,30 +27,30 @@ use YTAHA\IntelliBuilder\Traits\SingletonTrait;
  */
 class UserStatus implements Rule {
 
-    use SingletonTrait;
+	use SingletonTrait;
 
-    /**
-     * @var string $status The status to check against the user's logged-in status or match specific user.
-     */
-    protected $status;
+	/**
+	 * @var string $status The status to check against the user's logged-in status or match specific user.
+	 */
+	protected $status;
 
-    /**
-     * UserStatus constructor.
-     *
-     * @param array $rules The rules array containing the user status.
-     */
-    public function __construct($rules) {
-        $this->status = $rules['userStatus'];
-    }
+	/**
+	 * UserStatus constructor.
+	 *
+	 * @param array $rules The rules array containing the user status.
+	 */
+	public function __construct( $rules ) {
+		$this->status = sanitize_text_field( $rules['userStatus'] ?? '' );
+	}
 
-    /**
-     * Check if the user's status matches the specified status: logged-in, logged-out or specific users.
-     *
-     * @return bool True if the status matches, false otherwise.
-     */
-    public function is_met(): bool {
-        return ($this->status === 'loggedin' || $this->status === 'specific')
-            ? is_user_logged_in()
-            : !is_user_logged_in();
-    }
+	/**
+	 * Check if the user's status matches the specified status: logged-in, logged-out or specific users.
+	 *
+	 * @return bool True if the status matches, false otherwise.
+	 */
+	public function is_met(): bool {
+		return ( $this->status === 'loggedin' || $this->status === 'specific' )
+			? is_user_logged_in()
+			: ! is_user_logged_in();
+	}
 }

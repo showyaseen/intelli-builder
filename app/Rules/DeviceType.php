@@ -3,7 +3,7 @@
  * Plugin Name: IntelliBuilder
  * Plugin URI: https://wordpress.com/plugins/intelli-builder
  * Description: IntelliBuilder is a WordPress plugin that controls who sees your content based on user rules, web-based rules, and scheduled time.
- * Version: 0.0.1
+ * Version: 1.0.0
  * Author: Yaseen Taha
  * Author URI: showyaseen@hotmail.com
  * License: GPL2
@@ -28,33 +28,33 @@ use YTAHA\IntelliBuilder\Traits\SingletonTrait;
  */
 class DeviceType implements Rule {
 
-    use SingletonTrait;
+	use SingletonTrait;
 
-    /**
-     * @var array $user_device The list of user device types to check against.
-     */
-    protected $user_device;
+	/**
+	 * @var array $user_device The list of user device types to check against.
+	 */
+	protected $user_device;
 
-    /**
-     * DeviceType constructor.
-     *
-     * @param array $rules The rules array containing the device type rules.
-     */
-    public function __construct($rules) {
-        $this->user_device = $rules['userDeviceType'] ?? [];
-    }
+	/**
+	 * DeviceType constructor.
+	 *
+	 * @param array $rules The rules array containing the device type rules.
+	 */
+	public function __construct( $rules ) {
+		$this->user_device = isset( $rules['userDeviceType'] ) ? array_map( 'sanitize_text_field', $rules['userDeviceType'] ) : array();
+	}
 
-    /**
-     * Check if the user's device type meets the specified criteria.
-     *
-     * @return bool True if the user's device type matches any of the specified device types, false otherwise.
-     */
-    public function is_met(): bool {
-        foreach ($this->user_device as $device) {
-            if (strtolower(Browser::deviceType()) === strtolower($device)) {
-                return true;
-            }
-        }
-        return false;
-    }
+	/**
+	 * Check if the user's device type meets the specified criteria.
+	 *
+	 * @return bool True if the user's device type matches any of the specified device types, false otherwise.
+	 */
+	public function is_met(): bool {
+		foreach ( $this->user_device as $device ) {
+			if ( strtolower( Browser::deviceType() ) === strtolower( $device ) ) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

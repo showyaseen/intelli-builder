@@ -3,9 +3,9 @@
  * Plugin Name: IntelliBuilder
  * Plugin URI: https://wordpress.com/plugins/intelli-builder
  * Description: IntelliBuilder is a WordPress plugin that controls who sees your content based on user rules, web-based rules, and scheduled time.
- * Version: 0.0.1
+ * Version: 1.0.0
  * Author: Yaseen Taha
- * Author URI: showyaseen@hotmail.com
+ * Author URI: mailto:showyaseen@hotmail.com
  * License: GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: intelli-builder
@@ -20,86 +20,112 @@ use YTAHA\IntelliBuilder\Traits\SingletonTrait;
 /**
  * Class GeoIP
  *
- * This class provides functionality to get the user's geographical location (country and city) based on their IP address.
+ * Provides functionality to retrieve the user's geographical location based on their IP address.
  *
  * @package YTAHA\IntelliBuilder
  */
 class GeoIP {
 
-    use SingletonTrait;
+	use SingletonTrait;
 
-    /**
-     * @var string $country The user's country.
-     */
-    protected $country = '';
+	/**
+	 * The user's country.
+	 *
+	 * @var string
+	 */
+	protected $country = '';
 
-    /**
-     * @var string $city The user's city.
-     */
-    protected $city = '';
+	/**
+	 * The user's city.
+	 *
+	 * @var string
+	 */
+	protected $city = '';
 
-    /**
-     * GeoIP constructor.
-     *
-     * Initializes the user's location by calling the get_user_location method.
-     */
-    public function __construct() {
-        $this->get_user_location();
-    }
+	/**
+	 * GeoIP constructor.
+	 *
+	 * Initializes the user's location by calling the get_user_location() method.
+	 */
+	public function __construct() {
+		$this->get_user_location();
+	}
 
-    /**
-     * Get the user's location based on their IP address.
-     *
-     * This method fetches the user's IP address and uses the ip-api.com service to get the country and city.
-     */
-    private function get_user_location() {
-        $ip = $this->get_ip_address();
-        $url = "http://ip-api.com/json/{$ip}";
-        $response = wp_remote_get($url);
-        if (is_wp_error($response)) {
-            return;
-        }
-        $body = wp_remote_retrieve_body($response);
-        $data = json_decode($body, true);
+	/**
+	 * Retrieves the user's location based on their IP address.
+	 *
+	 * This method fetches the user's IP address and uses the ip-api.com service to get the country and city.
+	 *
+	 * @return void
+	 */
+	private function get_user_location() {
+		$ip = $this->get_ip_address();
 
-        // Check if the response is successful
-        if ($data['status'] === 'success') {
-            $this->country = strtolower($data['country']);
-            $this->city = strtolower($data['city']);
-        }
-    }
+		// Validate the IP address format
+		if ( ! filter_var( $ip, FILTER_VALIDATE_IP ) ) {
+			return;
+		}
 
-    /**
-     * Get the user's country.
-     *
-     * @return string The user's country.
-     */
-    public function get_country(): string {
-        return $this->country;
-    }
+		$url      = esc_url_raw( "http://ip-api.com/json/{$ip}" );
+		$response = wp_remote_get( $url );
 
-    /**
-     * Get the user's city.
-     *
-     * @return string The user's city.
-     */
-    public function get_city(): string {
-        return $this->city;
-    }
+		if ( is_wp_error( $response ) ) {
+			return;
+		}
 
-    /**
-     * Get the user's IP address.
-     *
-     * @return string The user's IP address.
-     */
-    private function get_ip_address(): string {
-        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-            $ip = $_SERVER['HTTP_CLIENT_IP'];
-        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        } else {
-            $ip = $_SERVER['REMOTE_ADDR'];
-        }
-        return $ip;
-    }
+		$body = wp_remote_retrieve_body( $response );
+		$data = json_decode( $body, true );
+
+		if ( json_last_error() !== JSON_ERROR_NONE ) {
+			return;
+		}
+
+		// Check if the response is successful
+		if ( isset( $data['status'] ) && 'success' === $data['status'] ) {
+			$this->country = sanitize_text_field( strtolower( $data['country'] ?? '' ) );
+			$this->city    = sanitize_text_field( strtolower( $data['city'] ?? '' ) );
+		}
+	}
+
+	/**
+	 * Gets the user's country.
+	 *
+	 * @return string The user's country.
+	 */
+	public function get_country(): string {
+		return $this->country;
+	}
+
+	/**
+	 * Gets the user's city.
+	 *
+	 * @return string The user's city.
+	 */
+	public function get_city(): string {
+		return $this->city;
+	}
+
+	/**
+	 * Retrieves the user's IP address.
+	 *
+	 * This method checks various server variables to find the user's IP address.
+	 *
+	 * @return string The user's IP address.
+	 */
+	private function get_ip_address(): string {
+		$ip_sources = array(
+			'HTTP_CLIENT_IP',
+			'HTTP_X_FORWARDED_FOR',
+			'REMOTE_ADDR',
+		);
+
+		foreach ( $ip_sources as $key ) {
+			if ( ! empty( $_SERVER[ $key ] ) ) {
+				$ip = sanitize_text_field( wp_unslash( $_SERVER[ $key ] ) );
+				return explode( ',', $ip )[0]; // Handle cases where multiple IPs are returned
+			}
+		}
+
+		return '0.0.0.0'; // Return a default value if no IP is found
+	}
 }
