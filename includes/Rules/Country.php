@@ -18,6 +18,7 @@ namespace YTAHA\IntelliBuilder\Rules;
 use YTAHA\IntelliBuilder\Rules\Contract\Rule;
 use YTAHA\IntelliBuilder\Utils\GeoIP;
 use YTAHA\IntelliBuilder\Traits\SingletonTrait;
+use YTAHA\IntelliBuilder\Traits\SanitizedNestedTrait;
 
 /**
  * Class Country
@@ -28,7 +29,7 @@ use YTAHA\IntelliBuilder\Traits\SingletonTrait;
  */
 class Country implements Rule {
 
-	use SingletonTrait;
+	use SingletonTrait, SanitizedNestedTrait;
 
 	/**
 	 * @var string $user_country The user's country.
@@ -46,8 +47,7 @@ class Country implements Rule {
 	 * @param array $rules The rules array containing the country rules.
 	 */
 	public function __construct( $rules ) {
-		$this->countries    = $rules['geoLocation_country'] ?? array();
-		$this->countries    = isset( $rules['geoLocation_country'] ) ? array_map( 'sanitize_text_field', $rules['geoLocation_country'] ) : array();
+		$this->countries = $this->sanitize_nested_array( $rules['geoLocation_country'] ?? [] );
 		$this->user_country = GeoIP::get_instance()->get_country();
 	}
 

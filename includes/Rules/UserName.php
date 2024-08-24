@@ -17,6 +17,7 @@ namespace YTAHA\IntelliBuilder\Rules;
 
 use YTAHA\IntelliBuilder\Rules\Contract\Rule;
 use YTAHA\IntelliBuilder\Traits\SingletonTrait;
+use YTAHA\IntelliBuilder\Traits\SanitizedNestedTrait;
 
 /**
  * Class UserName
@@ -27,7 +28,7 @@ use YTAHA\IntelliBuilder\Traits\SingletonTrait;
  */
 class UserName implements Rule {
 
-	use SingletonTrait;
+	use SingletonTrait, SanitizedNestedTrait;
 
 	/**
 	 * @var array $user_names The list of usernames to check against the logged-in user's username.
@@ -40,7 +41,7 @@ class UserName implements Rule {
 	 * @param array $rules The rules array containing the specific usernames.
 	 */
 	public function __construct( $rules ) {
-		$this->user_names = isset( $rules['specificUsers'] ) ? array_map( 'sanitize_text_field', $rules['specificUsers'] ) : array();
+		$this->user_names = $this->sanitize_nested_array( $rules['specificUsers'] ?? [] );
 	}
 
 	/**

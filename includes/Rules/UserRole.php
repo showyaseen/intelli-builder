@@ -17,6 +17,7 @@ namespace YTAHA\IntelliBuilder\Rules;
 
 use YTAHA\IntelliBuilder\Rules\Contract\Rule;
 use YTAHA\IntelliBuilder\Traits\SingletonTrait;
+use YTAHA\IntelliBuilder\Traits\SanitizedNestedTrait;
 
 /**
  * Class UserRole
@@ -27,7 +28,7 @@ use YTAHA\IntelliBuilder\Traits\SingletonTrait;
  */
 class UserRole implements Rule {
 
-	use SingletonTrait;
+	use SingletonTrait, SanitizedNestedTrait;
 
 	/**
 	 * @var array $roles The list of roles to check against the logged-in user's roles.
@@ -40,7 +41,7 @@ class UserRole implements Rule {
 	 * @param array $rules The rules array containing the user roles.
 	 */
 	public function __construct( $rules ) {
-		$this->roles = isset( $rules['userRoles'] ) ? array_map( 'sanitize_text_field', $rules['userRoles'] ) : array();
+		$this->roles = $this->sanitize_nested_array( $rules['userRoles'] ?? [] );
 	}
 
 	/**

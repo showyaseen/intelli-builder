@@ -17,6 +17,7 @@ namespace YTAHA\IntelliBuilder\Rules;
 
 use YTAHA\IntelliBuilder\Rules\Contract\Rule;
 use YTAHA\IntelliBuilder\Traits\SingletonTrait;
+use YTAHA\IntelliBuilder\Traits\SanitizedNestedTrait;
 use hisorange\BrowserDetect\Parser as Browser;
 
 /**
@@ -28,7 +29,7 @@ use hisorange\BrowserDetect\Parser as Browser;
  */
 class BrowserName implements Rule {
 
-	use SingletonTrait;
+	use SingletonTrait, SanitizedNestedTrait;
 
 	/**
 	 * @var array $browsers The list of browser names to check against the user's browser name.
@@ -41,7 +42,7 @@ class BrowserName implements Rule {
 	 * @param array $rules The rules array containing the browser name rules.
 	 */
 	public function __construct( $rules ) {
-		$this->browsers = isset( $rules['browser_name'] ) ? array_map( 'sanitize_text_field', $rules['browser_name'] ) : array();
+		$this->browsers = $this->sanitize_nested_array( $rules['browser_name'] ?? [] );
 	}
 
 	/**

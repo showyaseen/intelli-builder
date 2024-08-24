@@ -18,6 +18,7 @@ namespace YTAHA\IntelliBuilder\Rules;
 use YTAHA\IntelliBuilder\Rules\Contract\Rule;
 use hisorange\BrowserDetect\Parser as Browser;
 use YTAHA\IntelliBuilder\Traits\SingletonTrait;
+use YTAHA\IntelliBuilder\Traits\SanitizedNestedTrait;
 
 /**
  * Class DeviceType
@@ -28,7 +29,7 @@ use YTAHA\IntelliBuilder\Traits\SingletonTrait;
  */
 class DeviceType implements Rule {
 
-	use SingletonTrait;
+	use SingletonTrait, SanitizedNestedTrait;
 
 	/**
 	 * @var array $user_device The list of user device types to check against.
@@ -41,7 +42,7 @@ class DeviceType implements Rule {
 	 * @param array $rules The rules array containing the device type rules.
 	 */
 	public function __construct( $rules ) {
-		$this->user_device = isset( $rules['userDeviceType'] ) ? array_map( 'sanitize_text_field', $rules['userDeviceType'] ) : array();
+		$this->user_device = $this->sanitize_nested_array( $rules['userDeviceType'] ?? [] );
 	}
 
 	/**

@@ -17,6 +17,8 @@ namespace YTAHA\IntelliBuilder\Rules;
 
 use YTAHA\IntelliBuilder\Rules\Contract\Rule;
 use YTAHA\IntelliBuilder\Traits\SingletonTrait;
+use YTAHA\IntelliBuilder\Traits\SanitizedNestedTrait;
+
 use hisorange\BrowserDetect\Parser as Browser;
 
 /**
@@ -28,7 +30,7 @@ use hisorange\BrowserDetect\Parser as Browser;
  */
 class OperatingSystem implements Rule {
 
-	use SingletonTrait;
+	use SingletonTrait, SanitizedNestedTrait;
 
 	/**
 	 * @var array $osList List of operating systems to check against.
@@ -41,7 +43,7 @@ class OperatingSystem implements Rule {
 	 * @param array $rules The rules array containing the operating system criteria.
 	 */
 	public function __construct( array $rules ) {
-		$this->osList = isset( $rules['operatingSystem'] ) ? array_map( 'sanitize_text_field', $rules['operatingSystem'] ) : array();
+		$this->osList = $this->sanitize_nested_array( $rules['operatingSystem'] ?? [] );
 	}
 
 	/**
