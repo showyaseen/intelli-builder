@@ -3,7 +3,7 @@
 **Plugin Name:** IntelliBuilder
 **Plugin URI:** [https://wordpress.com/plugins/intelli-builder](https://wordpress.com/plugins/intelli-builder)
 **Description:** A WordPress plugin designed to control the visibility of Gutenberg blocks based on various user-defined rules.
-**Version:** 0.0.2
+**Version:** 0.0.1
 **Author:** Yaseen Taha
 **Author URI:** [mailto:showyaseen@hotmail.com](mailto:showyaseen@hotmail.com)
 **License:** GPLv2 or later
@@ -11,7 +11,7 @@
 **Text Domain:** intelli-builder
 **Domain Path:** /languages
 **Tested up to:** 6.6
-**Stable tag:** 0.0.2
+**Stable tag:** 0.0.1
 **Requires PHP:** 7.4
 **Requires at least:** 7.4
 
@@ -46,20 +46,10 @@
 
 #### How It Works
 
-1. **Initialization:** The plugin initializes by hooking into WordPress actions and filters via the `index.php` file.
+1. **Initialization:** The plugin initializes by hooking into WordPress actions and filters via the `intelli-builder.php` file.
 2. **Gutenberg Integration:** React components within `src/blocks/visibility-settings/` render the visibility settings interface for each Gutenberg block.
 3. **Rule Configuration:** Users set up visibility rules directly within the Gutenberg block settings panel.
 4. **Conditional Rendering:** Upon rendering a page or post, the plugin evaluates the defined visibility rules for each block to determine whether it should be displayed to the current user.
-
----
-
-#### Technologies Used
-
-- **WordPress:** Serves as the core CMS platform.
-- **React.js:** Powers the dynamic admin interface and Gutenberg block interactions.
-- **Gutenberg Blocks:** Provides a user-friendly interface within the WordPress block editor for seamless content management.
-- **PHP:** Handles server-side logic and integration with WordPress APIs.
-- **Composer:** Manages PHP dependencies and third-party packages.
 
 ---
 
@@ -71,6 +61,7 @@ IntelliBuilder leverages several third-party APIs and packages to enhance its fu
 
 - **Repository:** [https://github.com/MartinsOnuoha/countriesNowAPI](https://github.com/MartinsOnuoha/countriesNowAPI)
 - **Purpose:** Retrieves comprehensive lists of countries and their corresponding cities.
+- **License:** [https://github.com/MartinsOnuoha/countriesNowAPI/blob/master/LICENSE](The MIT License (MIT)).
 - **Usage in IntelliBuilder:**
   - **Component:** `GeoLocation` React component.
   - **Functionality:** Allows administrators to set visibility rules based on specific countries and cities. When configuring a block's visibility settings, users can select from an up-to-date list of countries and cities fetched from the API, enabling precise geolocation-based content delivery.
@@ -80,8 +71,9 @@ IntelliBuilder leverages several third-party APIs and packages to enhance its fu
 
 **2. IP-API**
 
-- **Website:** [https://ip-api.com/](https://ip-api.com/)
+- **Repository:** [https://github.com/arturgrigor/IPAPI](https://github.com/arturgrigor/IPAPI/)
 - **Purpose:** Determines the geographical location of users based on their IP addresses.
+- **License:** [https://github.com/arturgrigor/IPAPI/blob/master/LICENSE](The MIT License (MIT)).
 - **Usage in IntelliBuilder:**
   - **Class:** `GeoIP` PHP class located in `YTAHA\IntelliBuilder\Utils\GeoIP.php`.
   - **Functionality:** Automatically detects and provides the country and city information of the visiting user. This information is utilized to evaluate geolocation-based visibility rules defined within the plugin, ensuring that content is displayed or hidden appropriately based on the user's actual location.
@@ -93,6 +85,7 @@ IntelliBuilder leverages several third-party APIs and packages to enhance its fu
 
 - **Repository:** [https://github.com/hisorange/browser-detect](https://github.com/hisorange/browser-detect)
 - **Purpose:** Detects detailed information about the user's browser, device type, and operating system.
+- **License:** [https://github.com/hisorange/browser-detect/blob/stable/LICENSE](The MIT License (MIT)).
 - **Usage in IntelliBuilder:**
   - **Classes:**
     - `BrowserName` (`YTAHA\IntelliBuilder\Rules\BrowserName.php`)
