@@ -14,10 +14,10 @@
  * Package: YTAHA\IntelliBuilder
  */
 
-defined('ABSPATH') or die('No script kiddies please!');
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 // Autoload dependencies
-if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require_once __DIR__ . '/vendor/autoload.php';
 }
 
@@ -27,8 +27,8 @@ use YTAHA\IntelliBuilder\Traits\SingletonTrait;
 /**
  * Main plugin class.
  */
-final class IntelliBuilder
-{
+final class IntelliBuilder {
+
 	use SingletonTrait;
 
 	/**
@@ -36,8 +36,7 @@ final class IntelliBuilder
 	 *
 	 * @access private
 	 */
-	private function __construct()
-	{
+	private function __construct() {
 		$this->define_constants();
 		$this->setup_hooks();
 	}
@@ -45,42 +44,39 @@ final class IntelliBuilder
 	/**
 	 * Define plugin constants.
 	 */
-	private function define_constants()
-	{
+	private function define_constants() {
 		// Plugin version.
-		if (!defined('YTAHA_INTELLI_BUILDER_VERSION')) {
-			define('YTAHA_INTELLI_BUILDER_VERSION', '1.0.0');
+		if ( ! defined( 'YTAHA_INTELLI_BUILDER_VERSION' ) ) {
+			define( 'YTAHA_INTELLI_BUILDER_VERSION', '1.0.0' );
 		}
 
 		// Plugin directory.
-		if (!defined('YTAHA_INTELLI_BUILDER_DIR')) {
-			define('YTAHA_INTELLI_BUILDER_DIR', plugin_dir_path(__FILE__));
+		if ( ! defined( 'YTAHA_INTELLI_BUILDER_DIR' ) ) {
+			define( 'YTAHA_INTELLI_BUILDER_DIR', plugin_dir_path( __FILE__ ) );
 		}
 
 		// Plugin URL.
-		if (!defined('YTAHA_INTELLI_BUILDER_URL')) {
-			define('YTAHA_INTELLI_BUILDER_URL', plugin_dir_url(__FILE__));
+		if ( ! defined( 'YTAHA_INTELLI_BUILDER_URL' ) ) {
+			define( 'YTAHA_INTELLI_BUILDER_URL', plugin_dir_url( __FILE__ ) );
 		}
 
 		// Assets URL.
-		if (!defined('YTAHA_INTELLI_BUILDER_ASSETS_URL')) {
-			define('YTAHA_INTELLI_BUILDER_ASSETS_URL', YTAHA_INTELLI_BUILDER_URL . 'build');
+		if ( ! defined( 'YTAHA_INTELLI_BUILDER_ASSETS_URL' ) ) {
+			define( 'YTAHA_INTELLI_BUILDER_ASSETS_URL', YTAHA_INTELLI_BUILDER_URL . 'build' );
 		}
 	}
 
 	/**
 	 * Setup WordPress hooks.
 	 */
-	private function setup_hooks()
-	{
-		add_action('plugins_loaded', [$this, 'init']);
+	private function setup_hooks() {
+		add_action( 'plugins_loaded', array( $this, 'init' ) );
 	}
 
 	/**
 	 * Initialize the plugin.
 	 */
-	public function init()
-	{
+	public function init() {
 		$this->load_textdomain();
 		$this->register_services();
 	}
@@ -88,20 +84,18 @@ final class IntelliBuilder
 	/**
 	 * Load plugin textdomain for translation.
 	 */
-	private function load_textdomain()
-	{
+	private function load_textdomain() {
 		load_plugin_textdomain(
 			'intelli-builder',
 			false,
-			dirname(plugin_basename(__FILE__)) . '/languages'
+			dirname( plugin_basename( __FILE__ ) ) . '/languages'
 		);
 	}
 
 	/**
 	 * Register plugin services.
 	 */
-	private function register_services()
-	{
+	private function register_services() {
 		// Register Block Assets Loader.
 		\YTAHA\IntelliBuilder\Blocks\BlockLoader::get_instance();
 
