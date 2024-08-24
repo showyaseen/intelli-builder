@@ -1,5 +1,7 @@
 ### IntelliBuilder Documentation
 
+---
+
 **Plugin Name:** IntelliBuilder
 **Plugin URI:** [https://wordpress.com/plugins/intelli-builder](https://wordpress.com/plugins/intelli-builder)
 **Description:** A WordPress plugin designed to control the visibility of Gutenberg blocks based on various user-defined rules.
