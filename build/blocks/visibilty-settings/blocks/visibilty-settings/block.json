@@ -1,0 +1,94 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "intelli-builder/visibility-settings",
+  "version": "1.0.0",
+  "title": "Visibility Settings",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "Block Visibility Settings.",
+  "example": {},
+  "attributes": {
+    "intelliBuidlerSettings": {
+      "type": "object",
+      "properties": {
+        "enableConditionalContent": {
+          "type": "boolean"
+        },
+        "action": {
+          "type": "string"
+        },
+        "match": {
+          "type": "string"
+        },
+        "userRoles": {
+          "type": "array"
+        },
+        "scheduleType": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string"
+        },
+        "userStatus": {
+          "type": "string"
+        },
+        "specificUsers": {
+          "type": "array"
+        },
+        "geoLocation_country": {
+          "type": "array"
+        },
+        "geoLocation_city": {
+          "type": "array"
+        },
+        "userDeviceType": {
+          "type": "array"
+        },
+        "browser_name": {
+          "type": "array"
+        },
+        "browser_language": {
+          "type": "array"
+        },
+        "operatingSystem": {
+          "type": "array"
+        },
+        "sourceReferer": {
+          "type": "string"
+        },
+        "returningUser": {
+          "type": "string"
+        }
+      },
+      "default": {
+        "enableConditionalContent": false,
+        "action": "show",
+        "match": "all",
+        "userRoles": [],
+        "scheduleType": "",
+        "startDate": "",
+        "endDate": "",
+        "userStatus": "",
+        "specificUsers": [],
+        "geoLocation_country": [],
+        "geoLocation_city": [],
+        "userDeviceType": [],
+        "browser_name": [],
+        "browser_language": [],
+        "operatingSystem": [],
+        "sourceReferer": "",
+        "returningUser": ""
+      }
+    }
+  },
+  "supports": {
+    "html": false
+  },
+  "textdomain": "intelli-builder",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.scss"
+}

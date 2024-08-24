@@ -4,7 +4,7 @@
  */
 
 const path = require('path');
-const CopyPlugin = require('@wordpress/scripts/node_modules/copy-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const default_config_path = require.resolve('@wordpress/scripts/config/webpack.config.js');
 
 /**

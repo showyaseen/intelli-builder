@@ -218,18 +218,6 @@ const trash = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx
 
 /***/ }),
 
-/***/ "./src/blocks/visibilty-settings/editor.scss":
-/*!***************************************************!*\
-  !*** ./src/blocks/visibilty-settings/editor.scss ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
 /***/ "./src/blocks/visibilty-settings/components/Action.js":
 /*!************************************************************!*\
   !*** ./src/blocks/visibilty-settings/components/Action.js ***!
@@ -1127,7 +1115,9 @@ const LoggedInUser = ({
     setAttributes({
       intelliBuidlerSettings: {
         ...attributes.intelliBuidlerSettings,
-        userStatus: value
+        userStatus: value,
+        specificUsers: [],
+        userRoles: []
       }
     });
   };
@@ -1219,7 +1209,8 @@ const SpecificUser = ({
     onChange: specificUsers => setAttributes({
       intelliBuidlerSettings: {
         ...attributes.intelliBuidlerSettings,
-        specificUsers: specificUsers
+        specificUsers: specificUsers,
+        userRoles: []
       }
     }),
     suggestions: userList,
@@ -1289,7 +1280,8 @@ const UserRole = ({
     setAttributes({
       intelliBuidlerSettings: {
         ...attributes.intelliBuidlerSettings,
-        userRoles: userRoles
+        userRoles: userRoles,
+        specificUsers: []
       }
     });
   };
@@ -1419,23 +1411,54 @@ __webpack_require__.r(__webpack_exports__);
 
 const COUNTRIES_CACHE_KEY = 'geolocation_countries_cities';
 const fetchCountriesCitiesAPI = async () => {
-  const cachedCountriesCities = _utils_cache__WEBPACK_IMPORTED_MODULE_3__["default"].getCache(COUNTRIES_CACHE_KEY);
-  if (cachedCountriesCities?.countries && cachedCountriesCities?.cities) {
-    return cachedCountriesCities;
-  }
-  const response = await fetch('https://countriesnow.space/api/v0.1/countries');
-  const data = await response.json();
-  if (!data.error && data.data.length > 0) {
-    const countries = data.data;
-    const cities = countries.flatMap(country => country.cities.map(city => `${city}-${country.country}`));
+  try {
+    // Attempt to retrieve data from cache
+    const cachedCountriesCities = _utils_cache__WEBPACK_IMPORTED_MODULE_3__["default"].getCache(COUNTRIES_CACHE_KEY);
+    if (cachedCountriesCities?.countries && cachedCountriesCities?.cities) {
+      return cachedCountriesCities;
+    }
+
+    // Fetch data from API
+    const response = await fetch('https://countriesnow.space/api/v0.1/countries');
+    if (!response.ok) {
+      throw new Error('Failed to fetch countries and cities');
+    }
+    const {
+      error,
+      data
+    } = await response.json();
+    if (error || !Array.isArray(data)) {
+      throw new Error('Invalid API response');
+    }
+
+    // Sanitize and map countries and cities data
+    const countries = data.map(({
+      country,
+      cities
+    }) => ({
+      country: wp.escapeHtml(country),
+      cities: cities.map(city => wp.escapeHtml(city))
+    }));
+    const cities = countries.flatMap(({
+      country,
+      cities
+    }) => cities.map(city => `${city}-${country}`));
     const countriesCities = {
-      countries: countries,
-      cities: cities
+      countries,
+      cities
     };
+
+    // Cache the sanitized data
     _utils_cache__WEBPACK_IMPORTED_MODULE_3__["default"].setCache(COUNTRIES_CACHE_KEY, countriesCities);
     return countriesCities;
+  } catch (error) {
+    // Log error and return empty data structure
+    console.error('Error fetching countries and cities:', error);
+    return {
+      countries: [],
+      cities: []
+    };
   }
-  return [];
 };
 
 /**
@@ -2039,6 +2062,18 @@ const generateConditionDescription = settings => {
   }
   return [conditions.length, conditions.length > 0 ? `The block will be <b>${visibilityAction}</b> for ${conditions.join(', ')}. It will be <b>${oppositeAction}</b> otherwise.` : 'No visibility rules applied.'];
 };
+
+/***/ }),
+
+/***/ "./src/blocks/visibilty-settings/editor.scss":
+/*!***************************************************!*\
+  !*** ./src/blocks/visibilty-settings/editor.scss ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ }),
 
@@ -3496,7 +3531,7 @@ module.exports = window["wp"]["primitives"];
   \**************************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"intelli-builder/visibility-settings","version":"0.1.0","title":"Visibility Settings","category":"widgets","icon":"smiley","description":"Block Visibility Settings.","example":{},"attributes":{"intelliBuidlerSettings":{"type":"object","properties":{"enableConditionalContent":{"type":"boolean"},"action":{"type":"string"},"match":{"type":"string"},"userRoles":{"type":"array"},"scheduleType":{"type":"string"},"startDate":{"type":"string"},"endDate":{"type":"string"},"userStatus":{"type":"string"},"specificUsers":{"type":"array"},"geoLocation_country":{"type":"array"},"geoLocation_city":{"type":"array"},"userDeviceType":{"type":"array"},"browser_name":{"type":"array"},"browser_language":{"type":"array"},"operatingSystem":{"type":"array"},"sourceReferer":{"type":"string"},"returningUser":{"type":"string"}},"default":{"enableConditionalContent":false,"action":"show","match":"all","userRoles":[],"scheduleType":"","startDate":"","endDate":"","userStatus":"","specificUsers":[],"geoLocation_country":[],"geoLocation_city":[],"userDeviceType":[],"browser_name":[],"browser_language":[],"operatingSystem":[],"sourceReferer":"","returningUser":""}}},"supports":{"html":false},"textdomain":"intelli-builder","editorScript":"file:./index.js","editorStyle":"file:./editor.scss"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"intelli-builder/visibility-settings","version":"1.0.0","title":"Visibility Settings","category":"widgets","icon":"smiley","description":"Block Visibility Settings.","example":{},"attributes":{"intelliBuidlerSettings":{"type":"object","properties":{"enableConditionalContent":{"type":"boolean"},"action":{"type":"string"},"match":{"type":"string"},"userRoles":{"type":"array"},"scheduleType":{"type":"string"},"startDate":{"type":"string"},"endDate":{"type":"string"},"userStatus":{"type":"string"},"specificUsers":{"type":"array"},"geoLocation_country":{"type":"array"},"geoLocation_city":{"type":"array"},"userDeviceType":{"type":"array"},"browser_name":{"type":"array"},"browser_language":{"type":"array"},"operatingSystem":{"type":"array"},"sourceReferer":{"type":"string"},"returningUser":{"type":"string"}},"default":{"enableConditionalContent":false,"action":"show","match":"all","userRoles":[],"scheduleType":"","startDate":"","endDate":"","userStatus":"","specificUsers":[],"geoLocation_country":[],"geoLocation_city":[],"userDeviceType":[],"browser_name":[],"browser_language":[],"operatingSystem":[],"sourceReferer":"","returningUser":""}}},"supports":{"html":false},"textdomain":"intelli-builder","editorScript":"file:./index.js","editorStyle":"file:./editor.scss"}');
 
 /***/ })
 
