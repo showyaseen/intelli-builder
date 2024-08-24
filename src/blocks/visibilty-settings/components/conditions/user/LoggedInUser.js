@@ -21,7 +21,7 @@ const LoggedInUser = ({ attributes, setAttributes }) => {
 
 	const handleUserStatusChange = (value) => {
 		setUserStatus(value);
-		setAttributes({ intelliBuidlerSettings: { ...attributes.intelliBuidlerSettings, userStatus: value } });
+		setAttributes({ intelliBuidlerSettings: { ...attributes.intelliBuidlerSettings, userStatus: value, specificUsers: [], userRoles: [] } });
 	};
 
 	return (

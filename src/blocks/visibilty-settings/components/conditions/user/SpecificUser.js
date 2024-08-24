@@ -40,7 +40,7 @@ const SpecificUser = ({ attributes, setAttributes }) => {
 				__experimentalAutoSelectFirstMatch
 				__experimentalExpandOnFocus
 				label={ __('Select Users', 'intelli-builder') }
-				onChange={(specificUsers) => setAttributes({ intelliBuidlerSettings: { ...attributes.intelliBuidlerSettings, specificUsers: specificUsers } })}
+				onChange={(specificUsers) => setAttributes({ intelliBuidlerSettings: { ...attributes.intelliBuidlerSettings, specificUsers: specificUsers, userRoles: [] } })}
 				suggestions={userList}
 				value={attributes?.intelliBuidlerSettings.specificUsers || []}
 			/>

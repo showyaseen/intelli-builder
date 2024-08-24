@@ -17,6 +17,7 @@ namespace YTAHA\IntelliBuilder\Rules;
 
 use YTAHA\IntelliBuilder\Rules\Contract\Rule;
 use YTAHA\IntelliBuilder\Traits\SingletonTrait;
+use YTAHA\IntelliBuilder\Traits\SanitizedNestedTrait;
 
 /**
  * Class BrowserLanguage
@@ -27,7 +28,7 @@ use YTAHA\IntelliBuilder\Traits\SingletonTrait;
  */
 class BrowserLanguage implements Rule {
 
-	use SingletonTrait;
+	use SingletonTrait, SanitizedNestedTrait;
 
 	/**
 	 * The list of languages to check against the user's browser language.
@@ -42,7 +43,7 @@ class BrowserLanguage implements Rule {
 	 * @param array $rules The rules array containing the browser language rules.
 	 */
 	public function __construct( array $rules ) {
-		$this->languages = isset( $rules['browser_language'] ) ? array_map( 'sanitize_text_field', $rules['browser_language'] ) : array();
+        $this->languages = $this->sanitize_nested_array( $rules['browser_language'] );
 	}
 
 	/**
@@ -54,7 +55,7 @@ class BrowserLanguage implements Rule {
 		$user_language = strtolower( sanitize_text_field( wp_unslash( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '' ) ) );
 
 		foreach ( $this->languages as $language ) {
-			if ( strpos( $user_language, strtolower( $language ) ) !== false ) {
+			if ( strpos( $user_language, strtolower( array_key_first( $language ) ) ) !== false ) {
 				return true;
 			}
 		}

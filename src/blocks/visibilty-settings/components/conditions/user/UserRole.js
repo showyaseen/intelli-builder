@@ -42,6 +42,7 @@ const UserRole = ({ attributes, setAttributes }) => {
 			intelliBuidlerSettings: {
 				...attributes.intelliBuidlerSettings,
 				userRoles: userRoles,
+				specificUsers: []
 			},
 		});
 	};

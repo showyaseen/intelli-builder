@@ -7,7 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'hisorange\\BrowserDetect\\' => array($vendorDir . '/hisorange/browser-detect/src'),
-    'YTAHA\\IntelliBuilder\\' => array($baseDir . '/app'),
+    'YTAHA\\IntelliBuilder\\' => array($baseDir . '/includes'),
     'UAParser\\' => array($vendorDir . '/ua-parser/uap-php/src'),
     'League\\Pipeline\\' => array($vendorDir . '/league/pipeline/src'),
     'Jaybizzle\\CrawlerDetect\\' => array($vendorDir . '/jaybizzle/crawler-detect/src'),
