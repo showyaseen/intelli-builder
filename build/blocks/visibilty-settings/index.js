@@ -1395,9 +1395,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _utils_cache__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../utils/cache */ "./src/blocks/visibilty-settings/utils/cache.js");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_escape_html__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/escape-html */ "@wordpress/escape-html");
+/* harmony import */ var _wordpress_escape_html__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_cache__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../utils/cache */ "./src/blocks/visibilty-settings/utils/cache.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
 
 /**
  * GeoLocation Component for selecting user roles.
@@ -1409,11 +1411,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 const COUNTRIES_CACHE_KEY = 'geolocation_countries_cities';
 const fetchCountriesCitiesAPI = async () => {
   try {
     // Attempt to retrieve data from cache
-    const cachedCountriesCities = _utils_cache__WEBPACK_IMPORTED_MODULE_3__["default"].getCache(COUNTRIES_CACHE_KEY);
+    const cachedCountriesCities = _utils_cache__WEBPACK_IMPORTED_MODULE_4__["default"].getCache(COUNTRIES_CACHE_KEY);
     if (cachedCountriesCities?.countries && cachedCountriesCities?.cities) {
       return cachedCountriesCities;
     }
@@ -1436,8 +1439,8 @@ const fetchCountriesCitiesAPI = async () => {
       country,
       cities
     }) => ({
-      country: wp.escapeHtml(country),
-      cities: cities.map(city => wp.escapeHtml(city))
+      country: (0,_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_3__.escapeHTML)(country),
+      cities: cities.map(city => (0,_wordpress_escape_html__WEBPACK_IMPORTED_MODULE_3__.escapeHTML)(city))
     }));
     const cities = countries.flatMap(({
       country,
@@ -1449,7 +1452,7 @@ const fetchCountriesCitiesAPI = async () => {
     };
 
     // Cache the sanitized data
-    _utils_cache__WEBPACK_IMPORTED_MODULE_3__["default"].setCache(COUNTRIES_CACHE_KEY, countriesCities);
+    _utils_cache__WEBPACK_IMPORTED_MODULE_4__["default"].setCache(COUNTRIES_CACHE_KEY, countriesCities);
     return countriesCities;
   } catch (error) {
     // Log error and return empty data structure
@@ -1508,7 +1511,7 @@ const GeoLocation = ({
     });
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FormTokenField, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Countries', 'intelli-builder'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Countries', 'intelli-builder'),
     value: country.map(c => c.value),
     suggestions: countriesOptions.map(country => country.label),
     onChange: values => {
@@ -1518,7 +1521,7 @@ const GeoLocation = ({
     tokenizeOnSpace: true,
     __experimentalAutoSelectFirstMatch: true
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FormTokenField, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Cities', 'intelli-builder'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Cities', 'intelli-builder'),
     value: city,
     suggestions: citiesOptions,
     onChange: selectedCities => {
@@ -3492,6 +3495,16 @@ module.exports = window["wp"]["compose"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "@wordpress/escape-html":
+/*!************************************!*\
+  !*** external ["wp","escapeHtml"] ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["escapeHtml"];
 
 /***/ }),
 

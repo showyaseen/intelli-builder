@@ -6,6 +6,7 @@
 
 import { useState, useEffect } from '@wordpress/element';
 import { FormTokenField } from '@wordpress/components';
+import { escapeHTML } from '@wordpress/escape-html';
 import cache from '../../../utils/cache';
 import { __ } from '@wordpress/i18n';
 
@@ -32,8 +33,8 @@ const fetchCountriesCitiesAPI = async () => {
 
 		// Sanitize and map countries and cities data
 		const countries = data.map(({ country, cities }) => ({
-			country: wp.escapeHtml(country),
-			cities: cities.map(city => wp.escapeHtml(city)),
+			country: escapeHTML(country),
+			cities: cities.map(city => escapeHTML(city)),
 		}));
 
 		const cities = countries.flatMap(({ country, cities }) =>
