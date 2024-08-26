@@ -7,7 +7,7 @@
 **IntelliBuilder** is a WordPress plugin designed to control the visibility of Gutenberg blocks based on various user-defined rules. By implementing Gutenberg hooks and filters, IntelliBuilder allows administrators to add visibility settings to each Gutenberg block. This feature is particularly useful for creating dynamic and personalized content experiences on WordPress websites.
 
 **Now Available on WordPress.org!**
-You can download and install IntelliBuilder directly from the [WordPress Plugin Repository](https://wordpress.org/plugins/intellibuilder/) to start enhancing your site's content visibility today.
+You can download and install IntelliBuilder directly from the [WordPress Plugin Repository](https://wordpress.org/plugins/intelli-builder/) to start enhancing your site's content visibility today.
 
 ---
 
